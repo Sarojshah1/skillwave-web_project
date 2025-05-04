@@ -1,0 +1,29 @@
+/* Add your custom footer animations and styles */
+.animate__animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.animate__fadeIn {
+    animation-name: fadeIn;
+}
+
+.animate__delay-1s {
+    animation-delay: 1s;
+}
+
+.animate__delay-2s {
+    animation-delay: 2s;
+}
+
+.animate__delay-3s {
+    animation-delay: 3s;
+}
+
+.animate__delay-4s {
+    animation-delay: 4s;
+}
+
+.animate__delay-5s {
+    animation-delay: 5s;
+}
