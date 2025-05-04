@@ -1,22 +1,16 @@
 import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
+import { ICONS_PATHS } from '../shared/constants/imagePaths'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-indigo-200 flex flex-col items-center justify-center text-center p-4">
-      <div className="flex gap-10 mb-6">
-        <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
-          <img src={viteLogo} className="h-20 hover:scale-110 transition-transform duration-300" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="h-20 hover:scale-110 transition-transform duration-300" alt="React logo" />
-        </a>
-      </div>
+    
 
       <h1 className="text-4xl font-bold text-indigo-700 mb-4">Vite + React + Tailwind</h1>
+      <img src={ICONS_PATHS.logoSecond}/>
 
       <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-md">
         <button
