@@ -1,4 +1,5 @@
 import { FaUserCircle } from "react-icons/fa";
+import CustomButton from "../../../components/buttons/CustomButton";
 
 // const profileOptions = [
 //   { link: "View Profile", path: "profile" },
@@ -21,18 +22,22 @@ const ProfileOptions = ({
   // if (!isLoggedIn) {
   return (
     <div className="hidden md:flex space-x-4 items-center ml-12">
-      <button
+      <CustomButton
         onClick={() => handleNavLinkClick("login")}
-        className="bg-white text-[#49BBBD] px-4 py-2 rounded-full border border-[#49BBBD] hover:bg-[#49BBBD] hover:text-white transition duration-300"
+        variant="outline"
+        size="md"
+    
       >
         Login
-      </button>
-      <button
+      </CustomButton>
+      <CustomButton
         onClick={() => handleNavLinkClick("signup")}
-        className="bg-[#49BBBD] text-white px-4 py-2 rounded-full border border-white hover:bg-white hover:text-[#49BBBD] transition duration-300"
+        variant="primary"
+        size="md"
+        className="bg-[#49BBBD] text-white hover:bg-white hover:text-[#49BBBD] border border-white"
       >
         Signup
-      </button>
+      </CustomButton>
     </div>
   );
   // }

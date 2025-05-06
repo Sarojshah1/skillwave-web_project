@@ -1,3 +1,4 @@
+import CustomButton from "../../../components/buttons/CustomButton";
 const navitems = [
     { link: "Home", path: "" },
     { link: "Courses", path: "courses" },
@@ -10,13 +11,14 @@ const navitems = [
   const NavItems = ({ handleNavLinkClick }) => (
     <div className="hidden md:flex space-x-12 items-center flex-grow justify-end">
       {navitems.map((item, index) => (
-        <button
-          key={index}
-          onClick={() => handleNavLinkClick(item.path)}
-          className="text-white block hover:font-bold hover:text-white"
-        >
-          {item.link}
-        </button>
+        <CustomButton
+        key={index}
+        onClick={() => handleNavLinkClick(item.path)}
+        variant="ghost"
+        size="md"
+      >
+        {item.link}
+      </CustomButton>
       ))}
     </div>
   );
