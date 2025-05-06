@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 import Success from "./success/Success";
 import Features from "./features/Features";
 import TestimonialsSection from "./Testimonial/TestimonialsSection";
-import FAQSection from "./FAQ/FAQSection";
+import FAQSection from "./FAQ/ui/FAQSection";
 
 const Landing = () => {
   return (

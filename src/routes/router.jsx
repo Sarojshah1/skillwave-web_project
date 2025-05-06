@@ -6,6 +6,7 @@ import ProtectedRoute from '../guards/ProtectedRoute';
 import NotFound from '../shared/components/Failure/NotFound';
 
 import Landing from '../pages/LandingPage/LandingPage';
+import AboutUsPage from '../pages/aboutUs/AboutUsPage';
 
 
 export const router = createBrowserRouter([
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { path: '/', element: <Landing /> },
+      { path: '/aboutus', element: <AboutUsPage/> },
      
     ],
   },
