@@ -1,7 +1,6 @@
 export const IMAGE_PATHS = {
 
-    userAvatar: '/assets/images/default-avatar.png',
-    emptyState: '/assets/images/empty.png',
+    background:"/assets/images/background.png"
     
   };
   export const ICONS_PATHS = {
