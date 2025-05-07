@@ -9,7 +9,7 @@ const ActionButtons = () => (
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.9 }}
-      href="#join"
+      href="/signup"
       className="group flex items-center bg-primary text-white py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out w-full sm:w-auto justify-center"
     >
       <span>Join for Free</span>

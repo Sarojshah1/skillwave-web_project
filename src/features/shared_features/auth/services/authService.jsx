@@ -1,6 +1,6 @@
 
-import { api } from "../../../config/api";
-import { ENDPOINTS } from "../../../shared/constants/api.const";
+import { api } from "../../../../config/api";
+import { ENDPOINTS } from "../../../../shared/constants/api.const";
 
 export const authService = {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMAGE_PATHS } from '../../../shared/constants/imagePaths';
+import { IMAGE_PATHS } from '../../../../shared/constants/imagePaths';
 
 const LoginImage = () => (
   <div className="w-1/2 hidden md:block">
