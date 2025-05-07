@@ -7,6 +7,7 @@ import NotFound from '../shared/components/Failure/NotFound';
 
 import Landing from '../pages/LandingPage/LandingPage';
 import AboutUsPage from '../pages/aboutUs/AboutUsPage';
+import Signup from '../pages/auth/signUp';
 
 
 export const router = createBrowserRouter([
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <Landing /> },
       { path: '/aboutus', element: <AboutUsPage/> },
+      { path: '/signup', element: <Signup/> },
      
     ],
   },

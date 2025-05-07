@@ -1,7 +1,8 @@
 export const IMAGE_PATHS = {
 
     background:"/assets/images/background.png",
-    profile:"/assets/images/profile.png"
+    profile:"/assets/images/profile.png",
+    login_image:"/assets/images/login.png"
     
   };
   export const ICONS_PATHS = {
