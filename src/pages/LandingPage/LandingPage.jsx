@@ -4,6 +4,7 @@ import Success from "./success/Success";
 import Features from "./features/Features";
 import TestimonialsSection from "./Testimonial/TestimonialsSection";
 import FAQSection from "./FAQ/ui/FAQSection";
+import CategoriesPage from "./categories/page/Categories";
 
 const Landing = () => {
   return (
@@ -11,7 +12,7 @@ const Landing = () => {
     <Header/>
     <Success/>
     <Features/>
-    {/* <CategoriesPage/> */}
+    <CategoriesPage/>
     {/* <CoursesPage/> */}
     <TestimonialsSection/>
     <FAQSection/>
