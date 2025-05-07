@@ -5,14 +5,14 @@ import { ENDPOINTS } from "../../../shared/constants/api.const";
 export const authService = {
 
   register: async (formData) => {
-    const response = await api.post(ENDPOINTS.USER.REGISTER, formData, {
+    const response = await api.post(ENDPOINTS.AUTH.REGISTER, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     return response.data;
   },
 
   login: async (credentials) => {
-    const response = await api.post(ENDPOINTS.USER.LOGIN, credentials);
+    const response = await api.post(ENDPOINTS.AUTH.LOGIN, credentials);
     return response.data;
   },
 

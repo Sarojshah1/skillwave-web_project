@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaCamera } from 'react-icons/fa';
-import { useFormData } from '../../features/auth/hooks/useFormData';
-import { useAuth } from '../../features/auth/hooks/useAuth';
+import { useFormData } from '../hooks/useFormData';
+import { useAuth } from '../hooks/useAuth';
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
