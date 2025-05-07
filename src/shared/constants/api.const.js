@@ -1,7 +1,9 @@
 export const ENDPOINTS = {
-  USER: {
+  AUTH:{
     LOGIN: "/user/login",
     REGISTER: "/user/register",
+  },
+  USER: {
     PROFILE: "/user/profile",
     CHANGE_PASSWORD:"/user/change-password",
     UPDATE_DETAILS:"/user/update-details",
