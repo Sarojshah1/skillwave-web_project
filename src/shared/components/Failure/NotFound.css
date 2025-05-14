@@ -1,0 +1,27 @@
+/* Optional: Add custom animation styles if needed */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate__fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animate__delay-1s {
+  animation-delay: 1s;
+}
+
+/* .animate__delay-1.5s {
+  animation-delay: 1.5s;
+} */
+
+.animate__delay-2s {
+  animation-delay: 2s;
+}
