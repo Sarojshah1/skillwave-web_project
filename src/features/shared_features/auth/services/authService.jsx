@@ -1,5 +1,5 @@
 
-import { api } from "../../../../config/api";
+import { api } from "../../../../infrastructure/api/api";
 import { ENDPOINTS } from "../../../../shared/constants/api.const";
 
 export const authService = {
