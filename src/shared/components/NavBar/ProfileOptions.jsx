@@ -37,7 +37,7 @@ const ProfileOptions = ({ handleNavLinkClick }) => {
   return (
     <div className="hidden md:flex space-x-4 items-center ml-12 relative" ref={dropdownRef}>
       <button
-        className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-full border border-white hover:bg-white hover:text-primary transition duration-300"
+        className="flex items-center space-x-2 bg-[#49BBBD] text-white px-4 py-2 rounded-full border border-white hover:bg-white hover:text-primary transition duration-300"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         {profile?.profile_picture ? (

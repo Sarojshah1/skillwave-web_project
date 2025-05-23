@@ -20,7 +20,7 @@ const Stats = () => (
         key={index}
         whileHover={{ scale: 1.05, y: -5 }}
         transition={{ type: "spring", stiffness: 300 }}
-        className="flex items-center space-x-3 bg-primary text-white dark:text-white p-4 rounded-xl shadow-md transform transition-all duration-300 hover:shadow-lg"
+        className="flex items-center space-x-3 bg-[#49BBBD] text-white dark:text-white p-4 rounded-xl shadow-md transform transition-all duration-300 hover:shadow-lg"
       >
         <div className="p-2 bg-white/20 rounded-full text-white transition-all duration-300 ease-in-out">
           {stat.icon}

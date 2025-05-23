@@ -1,3 +1,4 @@
+
 export const ENDPOINTS = {
   AUTH:{
     LOGIN: "/user/login",
@@ -17,6 +18,9 @@ export const ENDPOINTS = {
     GET_CATEGORY:"/category"
   },
   COURCES:{
+    GET_COURSES:"/courses/pagination",
+    GET_COURSE_BY_ID:"/courses/:id",
+    GET_COURSE_BY_CATEGORY:"/courses/category/:categoryId",
     
   }
 
