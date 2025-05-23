@@ -8,8 +8,6 @@ import ReactQueryProvider from '../providers/ReactQueryProvider';
 const App = () => (
   <ReactQueryProvider>
     <ToastContainer position="top-center" autoClose={3000} />
-    
-    {/* Router */}
     <RouterProvider router={router} />
   </ReactQueryProvider>
 );
