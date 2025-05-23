@@ -1,4 +1,3 @@
-
 import React from "react";
 import clsx from "clsx";
 
@@ -8,8 +7,10 @@ const baseStyles =
 const variants = {
   primary: "bg-[#49BBBD] text-white hover:bg-[#49BBBD]",
   secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
-  outline: "bg-white border border-[#49BBBD] text-[#49BBBD] hover:bg-[#49BBBD] hover:text-white transition duration-300",
-  ghost: "bg-transparent text-white hover:bg-[#49BBBD] hover:text-bold hover:font-bold",
+  outline:
+    "bg-white border border-[#49BBBD] text-[#49BBBD] hover:bg-[#49BBBD] hover:text-white transition duration-300",
+  ghost:
+    "bg-transparent text-white hover:bg-[#49BBBD] hover:text-bold hover:font-bold",
   danger: "bg-red-600 text-white hover:bg-red-700",
 };
 
