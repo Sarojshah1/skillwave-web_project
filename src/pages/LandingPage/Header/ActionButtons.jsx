@@ -10,7 +10,7 @@ const ActionButtons = () => (
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.9 }}
       href="/signup"
-      className="group flex items-center bg-primary text-white py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out w-full sm:w-auto justify-center"
+      className="group flex items-center bg-[#49BBBD] text-white py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out w-full sm:w-auto justify-center"
     >
       <span>Join for Free</span>
       <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

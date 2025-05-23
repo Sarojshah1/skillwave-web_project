@@ -9,6 +9,7 @@ import Landing from '../pages/LandingPage/LandingPage';
 import AboutUsPage from '../pages/aboutUs/AboutUsPage';
 import Signup from '../features/shared_features//auth/pages/signUp';
 import LoginPage from '../features/shared_features/auth/pages/LoginPage';
+import CoursesPage from '../features/shared_features/courses/pages/course-page';
 
 
 export const router = createBrowserRouter([
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: '/aboutus', element: <AboutUsPage/> },
       { path: '/signup', element: <Signup/> },
       { path: '/login', element: <LoginPage/> },
+      {path: '/courses', element: <CoursesPage/>},
      
     ],
   },

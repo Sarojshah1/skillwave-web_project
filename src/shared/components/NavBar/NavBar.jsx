@@ -42,6 +42,7 @@ const NavBar = () => {
   };
 
   const handleNavLinkClick = (path) => {
+    console.log(path);
     if (window.location.pathname !== `/${path}`) {
       navigate(`/${path}`);
     } else {
@@ -50,7 +51,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-primary shadow-container md:px-8 p-4  mx-auto text-[#49BBBD]">
+    <nav className="bg-[#49BBBD] shadow-container md:px-8 p-4  mx-auto text-[#49BBBD]">
       <div className="text-lg mx-auto flex items-center justify-between">
         <a href="/" className="text-2xl font-semibold items-center">
           <img src={ICONS_PATHS.logoPrimary} alt="CareerVista" className="w-16 inline-block" />
