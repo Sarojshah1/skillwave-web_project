@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import { ChevronDown, SlidersHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -10,11 +9,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import { Slider } from "@/components/ui/slider"
 import { Badge } from "@/components/ui/badge"
 
-export function FilterBar({ categories, onFilterChange }) {
+export function FilterBar({ categories = [], onFilterChange }) {
   const [filters, setFilters] = useState({
     categories: [],
     levels: [],
@@ -29,7 +35,6 @@ export function FilterBar({ categories, onFilterChange }) {
     setFilters(updatedFilters)
     onFilterChange(updatedFilters)
 
-    // Count active filters
     let count = 0
     if (updatedFilters.categories.length) count++
     if (updatedFilters.levels.length) count++
@@ -92,7 +97,7 @@ export function FilterBar({ categories, onFilterChange }) {
           <DropdownMenuContent align="start" className="w-56">
             <DropdownMenuLabel>Select Categories</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {categories.map((category) => (
+            {(categories || []).map((category) => (
               <DropdownMenuCheckboxItem
                 key={category}
                 checked={filters.categories.includes(category)}
@@ -203,7 +208,7 @@ export function FilterBar({ categories, onFilterChange }) {
               <div>
                 <h3 className="text-sm font-medium mb-2">Categories</h3>
                 <div className="flex flex-wrap gap-2">
-                  {categories.map((category) => (
+                  {(categories || []).map((category) => (
                     <Badge
                       key={category}
                       variant={filters.categories.includes(category) ? "default" : "outline"}

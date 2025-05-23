@@ -57,9 +57,9 @@ export function CourseCard({
     >
       <div className="relative">
         <img
-          src={thumbnail.startsWith("http") ? thumbnail : `/thumbnails/${thumbnail}`}
+          src={`http://localhost:3000/thumbnails/${thumbnail}`}
           alt={title}
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-contain"
         />
         <div className="absolute top-0 left-0 m-3">
           <Badge variant="secondary" className={getLevelColor(level)}>
