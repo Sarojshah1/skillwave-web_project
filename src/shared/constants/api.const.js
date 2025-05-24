@@ -22,6 +22,15 @@ export const ENDPOINTS = {
     GET_COURSE_BY_ID:"/courses/:id",
     GET_COURSE_BY_CATEGORY:"/courses/category/:categoryId",
     
-  }
+  },
+  POST: {
+    CREATE_GET_POST: "/post",
+    GET_POST_BY_ID: "/post/:id",
+    LIKE_POST: "/post/:id/like",
+    UNLIKE_POST: "/post/unlike/:id",
+    ADD_GET_COMMENT: "/post/:id/comments",
+    DELETE_COMMENT: "/post/comment/delete/:id",
+    REPLIES:"/:postId/comments/:commentId/replies"
+  },
 
 };
