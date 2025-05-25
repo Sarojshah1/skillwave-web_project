@@ -18,6 +18,7 @@ import { PostImages } from "./post-images"
 import { CommentItem } from "./comment-item"
 
 export function PostCard({ post, currentUser }) {
+  console.log("PostCard rendered with post:", post)
   const [isLiked, setIsLiked] = useState(post.isLikedByCurrentUser || false)
   const [likesCount, setLikesCount] = useState(post.likes || 0)
   const [commentText, setCommentText] = useState("")
@@ -63,13 +64,13 @@ export function PostCard({ post, currentUser }) {
         <div className="flex justify-between items-start py-2">
           <div className="flex items-center gap-8">
             <Avatar className="ring-2 ring-white dark:ring-gray-900 shadow-md">
-              <AvatarImage src={post.user.avatar || "/placeholder.svg"} alt={post.user.name} />
-              <AvatarFallback>{post.user.name.charAt(0)}</AvatarFallback>
+              <AvatarImage src={`http://localhost:3000/profile/${post.user_id.profile_picture}` || "/placeholder.svg"} alt={post.user_id.name} />
+              <AvatarFallback>{post.user_id.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
-              <div className="font-semibold text-lg leading-tight">{post.user.name}</div>
+              <div className="font-semibold text-lg leading-tight">{post.user_id.name}</div>
               <div className="text-xs opacity-90">
-                {formatDistanceToNow(new Date(post.timestamp), { addSuffix: true })}
+                {formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}
               </div>
             </div>
           </div>
@@ -98,7 +99,10 @@ export function PostCard({ post, currentUser }) {
         <div className="mb-5 whitespace-pre-wrap text-gray-800 dark:text-gray-100 leading-relaxed">
           {post.content}
         </div>
-        {post.images && post.images.length > 0 && <PostImages images={post.images} />}
+        {post.images && post.images.length > 0 && (
+  <PostImages images={post.images.map(img => `http://localhost:3000/${img}`)} />
+)}
+
 
         <div className="flex items-center justify-between mt-6 text-sm text-muted-foreground">
           <div>{likesCount > 0 && `${likesCount} likes`}</div>
@@ -140,7 +144,7 @@ export function PostCard({ post, currentUser }) {
 
           <Separator className="my-3" />
 
-          {/* Comments section */}
+{/*       
           <div>
             {visibleComments.map((comment) => (
               <CommentItem
@@ -187,7 +191,7 @@ export function PostCard({ post, currentUser }) {
               </Button>
             )}
 
-            {/* Add comment form */}
+           
             <form onSubmit={handleAddComment} className="mt-4 flex items-center gap-3">
               <Avatar className="h-9 w-9 ring-2 ring-indigo-500">
                 <AvatarImage src={currentUser.avatar || "/placeholder.svg"} alt={currentUser.name} />
@@ -219,7 +223,7 @@ export function PostCard({ post, currentUser }) {
                 <Send className="h-5 w-5" />
               </Button>
             </form>
-          </div>
+          </div> */}
         </div>
       </CardFooter>
     </Card>

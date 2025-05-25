@@ -9,8 +9,13 @@ export const postsService = {
         });
         return response.data;
     },
-    getPosts: async (page = 1, limit = 10) => {
-        const response = await api.get(ENDPOINTS.POST.CREATE_GET_POST);
+  getPosts: async (page = 1, limit = 10) => {
+        const response = await api.get(`${ENDPOINTS.POST.CREATE_GET_POST}?page=${page}&limit=${limit}`, {
+            headers: {
+                "Cache-Control": "no-cache", 
+            },
+        });
+        console.log("Response from getPosts:", response.data);
         return response.data;
     },
     
