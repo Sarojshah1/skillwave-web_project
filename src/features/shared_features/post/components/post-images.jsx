@@ -28,7 +28,7 @@ export function PostImages({ images }) {
           <img
             src={images[0] || "/placeholder.svg"}
             alt="Post content"
-            className="w-full h-auto max-h-[500px] object-cover"
+            className="w-full h-auto max-h-[500px] object-contain"
           />
         </div>
       )
