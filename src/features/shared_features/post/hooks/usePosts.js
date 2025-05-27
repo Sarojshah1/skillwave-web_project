@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { postsService } from "../services/postsServices"; 
 
 
-export const usePosts = (page = 1, limit = 5) => {
+export const usePosts = (page = 1, limit = 2) => {
   return useQuery({
     queryKey: ["posts", page],
     queryFn: async () => {
