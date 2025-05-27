@@ -11,7 +11,7 @@ export default function ForumPage() {
   const [hasMore, setHasMore] = useState(true);
   const [errorStatus, setErrorStatus] = useState(null);
 
-  const { data, isLoading, isError, isFetching, error } = usePosts(page, 5);
+  const { data, isLoading, isError, isFetching, error } = usePosts(page, 2);
 
   useEffect(() => {
     if (data?.posts) {
