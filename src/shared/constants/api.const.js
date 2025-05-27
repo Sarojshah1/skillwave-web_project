@@ -27,10 +27,9 @@ export const ENDPOINTS = {
     CREATE_GET_POST: "/post",
     GET_POST_BY_ID: "/post/:id",
     LIKE_POST: "/post/:id/like",
-    UNLIKE_POST: "/post/unlike/:id",
     ADD_GET_COMMENT: "/post/:id/comments",
     DELETE_COMMENT: "/post/comment/delete/:id",
-    REPLIES:"/:postId/comments/:commentId/replies"
+    REPLIES:"/post/:postId/comments/:commentId/replies"
   },
 
 };
