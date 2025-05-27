@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CreatePost } from "../components/create-post";
 import { PostCard } from "../components/post-card";
 import { usePosts } from "../hooks/usePosts";
 import { useGlobalAuth } from "../../../../hooks/useAuth";
+import { LeftSidebar } from "../components/left-sideBar"
+import { RightSidebar } from "../components/right-siddebar"
 
 export default function ForumPage() {
   const { profile } = useGlobalAuth();
@@ -35,40 +37,36 @@ export default function ForumPage() {
     setPosts((prev) => [newPost, ...prev]);
   };
 
-  const handleLoadMore = () => {
-    if (!isFetching && hasMore) {
+  // Infinite scroll handler
+  const handleScroll = useCallback(() => {
+    if (isFetching || !hasMore) return;
+
+    // Scroll position
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const viewportHeight = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+
+    // When the user is within 300px from bottom, load more
+    if (fullHeight - (scrollTop + viewportHeight) < 300) {
       setPage((prev) => prev + 1);
     }
-  };
+  }, [isFetching, hasMore]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
 
   const is400Error = errorStatus === 400;
 
   return (
     <div className="container mx-auto py-16 px-4">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Sidebar */}
-        <aside className="hidden lg:block lg:col-span-3 space-y-4">
-          <div className="bg-gray-50 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold mb-2">📚 Categories</h2>
-            <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-              <li>JavaScript</li>
-              <li>React</li>
-              <li>Algorithms</li>
-              <li>System Design</li>
-              <li>Career</li>
-            </ul>
-          </div>
-          <div className="bg-gray-50 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold mb-2">🧭 Navigation</h2>
-            <ul className="space-y-1 text-sm text-blue-600">
-              <li><a href="#">My Posts</a></li>
-              <li><a href="#">Saved Posts</a></li>
-              <li><a href="#">Top Posts</a></li>
-            </ul>
-          </div>
-        </aside>
-
-        {/* Main Content */}
+         <LeftSidebar />
+      
         <main className="col-span-12 lg:col-span-6">
           <CreatePost user={profile} onPostCreated={handlePostCreated} />
 
@@ -107,18 +105,6 @@ export default function ForumPage() {
             </div>
           )}
 
-          {!isLoading && hasMore && (
-            <div className="flex justify-center mt-6">
-              <button
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-                onClick={handleLoadMore}
-                disabled={isFetching}
-              >
-                {isFetching ? "Loading..." : "Load More"}
-              </button>
-            </div>
-          )}
-
           {isFetching && page > 1 && (
             <div className="space-y-4 mt-4">
               {[...Array(2)].map((_, idx) => (
@@ -142,27 +128,9 @@ export default function ForumPage() {
             </div>
           )}
         </main>
-
-        {/* Right Sidebar */}
-        <aside className="hidden lg:block lg:col-span-3 space-y-4">
-          <div className="bg-yellow-50 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold text-yellow-800 mb-2">🔥 Highlights</h2>
-            <ul className="list-disc list-inside text-sm text-yellow-900 space-y-1">
-              <li>✅ 12 problems solved this week</li>
-              <li>🏆 Top contributor: @codeMaster123</li>
-              <li>💡 Tip: Use memoization for repeated tasks</li>
-              <li>📅 New challenge on Friday</li>
-            </ul>
-          </div>
-          <div className="bg-green-50 p-4 rounded shadow">
-            <h2 className="text-lg font-semibold text-green-800 mb-2">📈 Leaderboard</h2>
-            <ol className="text-sm text-green-900 list-decimal list-inside space-y-1">
-              <li>@codeMaster123</li>
-              <li>@bugHunter</li>
-              <li>@devQueen</li>
-            </ol>
-          </div>
-        </aside>
+        <RightSidebar />
+        
+          
       </div>
     </div>
   );
