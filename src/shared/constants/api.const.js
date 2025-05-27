@@ -1,3 +1,4 @@
+
 export const ENDPOINTS = {
   AUTH:{
     LOGIN: "/user/login",
@@ -17,7 +18,18 @@ export const ENDPOINTS = {
     GET_CATEGORY:"/category"
   },
   COURCES:{
+    GET_COURSES:"/courses/pagination",
+    GET_COURSE_BY_ID:"/courses/:id",
+    GET_COURSE_BY_CATEGORY:"/courses/category/:categoryId",
     
-  }
+  },
+  POST: {
+    CREATE_GET_POST: "/post",
+    GET_POST_BY_ID: "/post/:id",
+    LIKE_POST: "/post/:id/like",
+    ADD_GET_COMMENT: "/post/:id/comments",
+    DELETE_COMMENT: "/post/comment/delete/:id",
+    REPLIES:"/post/:postId/comments/:commentId/replies"
+  },
 
 };
