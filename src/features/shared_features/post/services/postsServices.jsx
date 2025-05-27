@@ -18,5 +18,37 @@ export const postsService = {
         console.log("Response from getPosts:", response.data);
         return response.data;
     },
+
+    addComment: async (postId, commentData) => {
+    const response = await api.post(
+      ENDPOINTS.POST.ADD_GET_COMMENT.replace(":id", postId),
+      commentData
+    );
+    return response.data;
+  },
+  getComments: async (postId) => {
+    const response = await api.get(
+      ENDPOINTS.POST.ADD_GET_COMMENT.replace(":id", postId)
+    );
+    return response.data;
+  },
+  addReply: async (postId, commentId, replyData) => {
+    const endpoint = ENDPOINTS.POST.REPLIES
+      .replace(":postId", postId)
+      .replace(":commentId", commentId);
+
+    const response = await api.post(endpoint, replyData);
+    console.log("Response from getReplies:", response.data);
+    return response.data;
+  },
+  getReplies: async (postId, commentId) => {
+    const endpoint = ENDPOINTS.POST.REPLIES
+      .replace(":postId", postId)
+      .replace(":commentId", commentId);
+
+    const response = await api.get(endpoint);
+    console.log("Response from getReplies:", response.data);
+    return response.data;
+  },
     
 }
