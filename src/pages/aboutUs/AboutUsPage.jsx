@@ -9,13 +9,20 @@ import CTASection from './components/CTASection';
 
 const AboutUsPage = () => {
   return (
-    <div className="p-8 bg-gradient-to-r from-blue-100 to-blue-200 min-h-screen">
-      <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden">
+  <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 -left-40 w-80 h-80 bg-gradient-to-br from-indigo-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 right-1/3 w-80 h-80 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="relative z-10">
         <HeroSection />
         <MissionVisionSection />
+        <AchievementsSection />
         <TeamSection />
         <TestimonialsSection />
-        <AchievementsSection />
         <ContactSection />
         <CTASection />
       </div>
