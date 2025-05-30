@@ -4,7 +4,7 @@ import MissionVisionSection from './components/MissionVisionSection';
 import TeamSection from './components/TeamSection';
 import TestimonialsSection from './components/TestimonialSection';
 import AchievementsSection from './components/AchievementSection';
-import ContactSection from './components/ContactSection';
+import ContactSection from './components/ContactSection.jsx';
 import CTASection from './components/CTASection';
 
 const AboutUsPage = () => {
