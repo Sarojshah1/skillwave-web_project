@@ -50,5 +50,13 @@ export const postsService = {
     console.log("Response from getReplies:", response.data);
     return response.data;
   },
+  addToSearchHistory: async (searchTerm) => {
+  const response = await api.post(
+    ENDPOINTS.USER.SEARCH_HISTORY,
+    { searchTerm }
+  );
+  return response.data;
+},
+
     
 }

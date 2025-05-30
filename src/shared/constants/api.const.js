@@ -9,7 +9,8 @@ export const ENDPOINTS = {
     CHANGE_PASSWORD:"/user/change-password",
     UPDATE_DETAILS:"/user/update-details",
     UPDATE_PROFILE_PICTURE:"/user/update-profile-picture",
-    UPDATE_PASSWORD_BY_EMAIL:"/user/update-password-by-email"
+    UPDATE_PASSWORD_BY_EMAIL:"/user/update-password-by-email",
+    SEARCH_HISTORY:"/user/search-history",
   },
   OTP:{
     SEND_OTP:"/otp"

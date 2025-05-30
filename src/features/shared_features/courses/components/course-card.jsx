@@ -15,7 +15,7 @@ export function CourseCard({
   duration,
   level,
   category,
-  creator,
+  created_by,
   rating = 4.5,
   studentsCount = 0,
   isFeatured = false,
@@ -103,7 +103,7 @@ export function CourseCard({
           </div>
           <div className="flex items-center">
             <User className="w-4 h-4 mr-1 text-gray-400" />
-            {creator}
+            {created_by.name}
           </div>
           <div className="flex items-center">
             <BookOpen className="w-4 h-4 mr-1 text-gray-400" />
