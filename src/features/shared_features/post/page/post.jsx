@@ -92,13 +92,17 @@ export default function ForumPage() {
             </div>
           )}
 
-          {!isLoading && !isError && !hasMore && !isFetching && posts.length > 0 && (
-            <div className="text-center mt-6 text-gray-600">
-              <p className="bg-gray-100 py-3 px-4 rounded-md inline-block text-sm">
-                🎉 You've reached the end! No more posts to show.
-              </p>
-            </div>
-          )}
+          {!isLoading &&
+            !isError &&
+            !hasMore &&
+            !isFetching &&
+            posts.length > 0 && (
+              <div className="text-center mt-6 text-gray-600">
+                <p className="bg-gray-100 py-3 px-4 rounded-md inline-block text-sm">
+                  🎉 You've reached the end! No more posts to show.
+                </p>
+              </div>
+            )}
         </main>
 
         <RightSidebar />

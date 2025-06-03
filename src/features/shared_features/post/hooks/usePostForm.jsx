@@ -70,7 +70,7 @@ export function usePostForm(initialUser, onPostCreated) {
     setSelectedImages([]);
     setSelectedImagePreviews([]);
     if (fileInputRef.current) {
-      fileInputRef.current.value = null; // clear file input
+      fileInputRef.current.value = null;
     }
   };
 
