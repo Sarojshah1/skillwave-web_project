@@ -11,7 +11,6 @@ export const useForumPosts = () => {
 
   const { data, isLoading, isError, isFetching, error } = usePosts(page, 2);
 
-  // Merge new posts with error handling for malformed data
   useEffect(() => {
     if (data?.posts && Array.isArray(data.posts)) {
       setPosts((prev) => {
@@ -28,14 +27,11 @@ export const useForumPosts = () => {
     }
   }, [data]);
 
-  // Error handling
   useEffect(() => {
     if (isError) {
       setErrorStatus(error?.response?.status || "unknown");
     }
   }, [isError, error]);
-
-  // Infinite scroll handler
   const handleScroll = useCallback(() => {
     if (isFetching || !hasMore) return;
 

@@ -32,5 +32,10 @@ export const ENDPOINTS = {
     DELETE_COMMENT: "/post/comment/delete/:id",
     REPLIES:"/post/:postId/comments/:commentId/replies"
   },
+  BLOG:{
+    GET_POST_BLOGS: "/blog/blogs",
+    GET_BLOG_BY_ID: "/blog/blogs/:id",
+  }
+
 
 };
