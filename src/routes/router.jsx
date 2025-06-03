@@ -11,6 +11,7 @@ import Signup from '../features/shared_features//auth/pages/signUp';
 import LoginPage from '../features/shared_features/auth/pages/LoginPage';
 import CoursesPage from '../features/shared_features/courses/pages/course-page';
 import ForumPage from '@/features/shared_features/post/page/post';
+import { CourseDetailsPage } from '@/features/shared_features/courseDetailsScreen/page/CourseDetailPage';
 
 
 export const router = createBrowserRouter([
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { path: '/signup', element: <Signup/> },
       { path: '/login', element: <LoginPage/> },
       {path: '/courses', element: <CoursesPage/>},
+      {path: '/course/:courseId', element: <CourseDetailsPage/>},
       {path: '/posts', element: <ForumPage/>},
      
     ],
