@@ -1,10 +1,10 @@
 
-import { Card, CardContent, CardFooter, CardHeader } from "../../../../components/ui/card"
-import { Badge } from "../../../../components/ui/Badge"
-import { Button } from "../../../../components/ui/Button"
-import { RatingStars } from "../../../../components/ui/rating-stars"
-import { Clock, Users, BookOpen, Award } from "../../../../components/ui/icons"
-import { formatPrice, calculateDiscount } from "../../../../lib/utils"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { RatingStars } from "@/components/ui/rating-stars"
+import { Clock, Users, BookOpen, Award } from "@/components/ui/icons"
+import { formatPrice, calculateDiscount } from "@/lib/utils"
 
 export function CourseCard({ course, onCourseClick }) {
   const discountPercentage = course.price
