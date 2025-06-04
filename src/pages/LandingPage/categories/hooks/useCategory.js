@@ -14,7 +14,6 @@ const useCategories = () => {
         const fetchCategories = async () => {
             try {
                 const data=await categoryServices.getCategories();
-                console.log(data);
                 setCategories(data);
             } catch (err) {
                 setError(err);

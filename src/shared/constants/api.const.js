@@ -35,6 +35,12 @@ export const ENDPOINTS = {
   BLOG:{
     GET_POST_BLOGS: "/blog/blogs",
     GET_BLOG_BY_ID: "/blog/blogs/:id",
+  },
+  REVIEW:{
+    POST_REVIEWS: "/review/reviews",
+    GET_REVIEW_BY_COURSE_ID: "/review/reviews/course/:courseId",
+    GET_REVIEW_BY_ID: "/review/:id",
+    DELETE_REVIEW: "/review/delete/:id",
   }
 
 
