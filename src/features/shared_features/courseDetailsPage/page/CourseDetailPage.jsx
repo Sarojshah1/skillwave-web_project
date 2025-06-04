@@ -13,6 +13,7 @@ import { CheckCircle, BookOpen, Clock, Users, Award, Star } from "@/components/u
 import { calculateAverageRating } from "@/lib/utils"
 import { useCourseById } from '../hooks/useCourseById';
 import { useParams } from 'react-router-dom';
+import { useReviewsByCourseId } from "../hooks/useReviewsByCourseId"
 
 export function CourseDetailsPage() {
  const { courseId } = useParams(); 
@@ -20,8 +21,6 @@ export function CourseDetailsPage() {
   const [loading, setLoading] = useState(true)
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [activeTab, setActiveTab] = useState("overview")
-
-  console.log(course);
 
   const handleEnrollNow = () => {
     if (!course) return
@@ -33,26 +32,7 @@ export function CourseDetailsPage() {
   const handleToggleWishlist = () => {
     setIsWishlisted(!isWishlisted)
   }
-
-  const handleAddReview = (reviewData) => {
-    if (!course) return
-
-    const newReview = {
-      id: Date.now().toString(),
-      user_id: {
-        name: "You",
-        avatar: "/placeholder.svg?height=40&width=40",
-      },
-      rating: reviewData.rating,
-      comment: reviewData.comment,
-      created_at: new Date().toISOString().split("T")[0],
-    }
-
-    setCourse({
-      ...course,
-      reviews: [newReview, ...course.reviews],
-    })
-  }
+   const { data: reviews, } = useReviewsByCourseId(course?._id)
 
 //   if (isLoading) {
 //     return (
@@ -76,14 +56,14 @@ export function CourseDetailsPage() {
     )
   }
 
-  const averageRating = calculateAverageRating(course.reviews)
+  const averageRating = calculateAverageRating(reviews || [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            <CourseHero course={course} isWishlisted={isWishlisted} onToggleWishlist={handleToggleWishlist} />
+            <CourseHero course={course} reviews={reviews || []} isWishlisted={isWishlisted} onToggleWishlist={handleToggleWishlist} />
 
             <Card className="rounded-3xl shadow-xl border-0 bg-white/80 backdrop-blur-sm">
               <CardContent className="p-8">
@@ -196,20 +176,20 @@ export function CourseDetailsPage() {
                 {activeTab === "reviews" && (
                   <div className="space-y-8">
                     <div className="flex items-center justify-between">
-                      <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      <h2 className="text-3xl font-bold bg-[#49BBBD] bg-clip-text text-transparent">
                         Student Reviews
                       </h2>
                       <div className="flex items-center space-x-4">
                         <div className="text-center">
                           <div className="text-4xl font-bold text-gray-900">{averageRating.toFixed(1)}</div>
                           <RatingStars rating={averageRating} className="justify-center mb-1" />
-                          <div className="text-sm text-gray-600">{course.reviews.length} reviews</div>
+                          <div className="text-sm text-gray-600">{reviews.length} reviews</div>
                         </div>
                       </div>
                     </div>
 
-                    <ReviewList reviews={course.reviews} />
-                    <ReviewForm onSubmit={handleAddReview} />
+                    <ReviewList courseId={course._id} />
+                    <ReviewForm courseId={course._id} />
                   </div>
                 )}
               </CardContent>

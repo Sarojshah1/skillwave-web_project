@@ -11,7 +11,7 @@ export function CourseSidebar({ course, isWishlisted, onEnrollNow, onToggleWishl
     <div className="sticky top-8 space-y-6">
       <Card className="rounded-3xl shadow-2xl overflow-hidden border-0 bg-white/90 backdrop-blur-sm">
         <div className="relative">
-          <img src={`http://localhost:3000/thumbnails/${course.thumbnail}` || "/placeholder.svg"} alt={course.title} className="w-full h-56 object-cover" />
+          <img src={`http://localhost:3000/thumbnails/${course.thumbnail}` || "/placeholder.svg"} alt={course.title} className="w-full h-56 object-contain" />
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
             <Button
               size="lg"

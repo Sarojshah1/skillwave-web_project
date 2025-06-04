@@ -1,22 +1,49 @@
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { RatingStars } from "@/components/ui/rating-stars"
 import { Card } from "@/components/ui/card"
 import { MessageCircle } from "@/components/ui/icons"
+import { useAddReview } from "../hooks/useAddReview"
+import { toast } from "react-hot-toast"
 
-export function ReviewForm({ onSubmit }) {
+export function ReviewForm({ courseId }) {
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState("")
+
+  const { mutate: addReview, isPending } = useAddReview()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (rating === 0 || !comment.trim()) return
 
-    onSubmit({ rating, comment })
-    setRating(0)
-    setComment("")
+    const reviewData = {
+      courseId,
+      rating,
+      comment
+    }
+
+const formData = new FormData()
+formData.append("course_id", reviewData.courseId)
+formData.append("rating", reviewData.rating.toString())
+formData.append("comment", reviewData.comment)
+console.log(courseId)
+
+
+    addReview({
+                course_id: courseId,
+                rating,
+                comment
+            }, {
+      onSuccess: () => {
+        toast.success("Review submitted successfully!")
+        setRating(0)
+        setComment("")
+      },
+      onError: () => {
+        toast.error("Failed to submit review.")
+      }
+    })
   }
 
   return (
@@ -53,9 +80,9 @@ export function ReviewForm({ onSubmit }) {
           type="submit"
           variant="default"
           className="px-8 py-3 rounded-xl font-semibold"
-          disabled={rating === 0 || !comment.trim()}
+          disabled={rating === 0 || !comment.trim() || isPending}
         >
-          Submit Review
+          {isPending ? "Submitting..." : "Submit Review"}
         </Button>
       </form>
     </Card>

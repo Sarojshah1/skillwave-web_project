@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Star, Clock, Users, Globe, TrendingUp, Heart, Share } from "lucide-react"
 import { calculateDiscount, calculateAverageRating } from "@/lib/utils"
 
-export function CourseHero({ course, isWishlisted, onToggleWishlist }) {
-  const averageRating = calculateAverageRating(course.reviews)
+export function CourseHero({ course,reviews ,isWishlisted, onToggleWishlist }) {
+  const averageRating = calculateAverageRating(reviews)
   const discountPercentage = course.price 
 
   return (
@@ -17,16 +17,16 @@ export function CourseHero({ course, isWishlisted, onToggleWishlist }) {
         <div className="absolute top-6 right-6 flex space-x-3">
           <Button
             size="icon"
-            variant="secondary"
-            className="rounded-full bg-white/20 backdrop-blur-sm border-white/30 hover:bg-white/30"
+            variant="default"
+            className="rounded-full backdrop-blur-sm border-white/30 "
             onClick={onToggleWishlist}
           >
             <Heart className={`w-5 h-5 ${isWishlisted ? "fill-red-500 text-red-500" : "text-white"}`} />
           </Button>
           <Button
             size="icon"
-            variant="secondary"
-            className="rounded-full bg-white/20 backdrop-blur-sm border-white/30 hover:bg-white/30"
+            variant="default"
+            className="rounded-fullbackdrop-blur-sm border-white/30 "
           >
             <Share className="w-5 h-5 text-white" />
           </Button>
@@ -34,13 +34,13 @@ export function CourseHero({ course, isWishlisted, onToggleWishlist }) {
 
         <div className="absolute bottom-8 left-8 right-8">
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 px-4 py-2 text-sm">
+            <Badge className="bg-[#49BBBD] text-white border-0 px-4 py-2 text-sm">
               {course.category_id.name}
             </Badge>
             <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 px-4 py-2">
               {course.level}
             </Badge>
-            {discountPercentage }
+        
             <Badge className="bg-green-500/20 backdrop-blur-sm text-green-100 border-green-300/30 px-4 py-2">
               <TrendingUp className="w-4 h-4 mr-1" />
               Bestseller
@@ -53,10 +53,10 @@ export function CourseHero({ course, isWishlisted, onToggleWishlist }) {
             <div className="flex items-center space-x-2">
               <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
               <span className="font-bold text-lg">{averageRating.toFixed(1)}</span>
-              <span>({course.reviews.length} reviews)</span>
+              <span>({reviews.length} reviews)</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Users className="w-5 h-5" />
+              <Users className="w-5 h-5 text-[#49BBBD]" />
               <span className="font-medium">100 students</span>
             </div>
             <div className="flex items-center space-x-2">

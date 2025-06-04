@@ -17,7 +17,6 @@ export const postsService = {
         },
       }
     );
-    console.log("Response from getPosts:", response.data);
     return response.data;
   },
 
@@ -41,7 +40,6 @@ export const postsService = {
     );
 
     const response = await api.post(endpoint, replyData);
-    console.log("Response from getReplies:", response.data);
     return response.data;
   },
   getReplies: async (postId, commentId) => {
@@ -51,7 +49,6 @@ export const postsService = {
     );
 
     const response = await api.get(endpoint);
-    console.log("Response from getReplies:", response.data);
     return response.data;
   },
   addToSearchHistory: async (searchTerm) => {

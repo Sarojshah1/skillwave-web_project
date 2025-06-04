@@ -37,7 +37,8 @@ export const ENDPOINTS = {
     GET_BLOG_BY_ID: "/blog/blogs/:id",
   },
   REVIEW:{
-    GET_POST_REVIEWS: "/review/reviews",
+    POST_REVIEWS: "/review/reviews",
+    GET_REVIEW_BY_COURSE_ID: "/review/reviews/course/:courseId",
     GET_REVIEW_BY_ID: "/review/:id",
     DELETE_REVIEW: "/review/delete/:id",
   }
