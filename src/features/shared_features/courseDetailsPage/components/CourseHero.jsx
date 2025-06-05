@@ -6,7 +6,6 @@ import { calculateDiscount, calculateAverageRating } from "@/lib/utils"
 
 export function CourseHero({ course,reviews ,isWishlisted, onToggleWishlist }) {
   const averageRating = calculateAverageRating(reviews)
-  const discountPercentage = course.price 
 
   return (
     <div className="overflow-hidden rounded-3xl shadow-2xl border-0 bg-gradient-to-br from-white to-blue-50/30 py-20">

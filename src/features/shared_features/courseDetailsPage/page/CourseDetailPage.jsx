@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { CourseHero } from "../components/CourseHero"
 import { CourseSidebar } from "../components/CourseSideBar"
 import { ReviewForm } from "../components/RrviewForm"
@@ -12,10 +12,12 @@ import { RatingStars } from "@/components/ui/rating-stars"
 import { CheckCircle, BookOpen, Clock, Users, Award, Star } from "@/components/ui/icons"
 import { calculateAverageRating } from "@/lib/utils"
 import { useCourseById } from '../hooks/useCourseById';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useReviewsByCourseId } from "../hooks/useReviewsByCourseId"
 
 export function CourseDetailsPage() {
+  const navigate=useNavigate();
+  const state=useLocation();
  const { courseId } = useParams(); 
   const { data: course, isLoading, isError, error } = useCourseById(courseId);
   const [loading, setLoading] = useState(true)
@@ -23,10 +25,8 @@ export function CourseDetailsPage() {
   const [activeTab, setActiveTab] = useState("overview")
 
   const handleEnrollNow = () => {
-    if (!course) return
-    alert(
-      `🎉 Enrolling in: ${course.title}\n💰 Price: NPR ${course.price.toLocaleString()}\n\nRedirecting to payment...`,
-    )
+        navigate('/payment', { state: { course: course } });
+    
   }
 
   const handleToggleWishlist = () => {
@@ -78,7 +78,7 @@ export function CourseDetailsPage() {
                     >
                       {tab === "overview" && "Overview"}
                       {tab === "instructor" && "Instructor"}
-                      {tab === "reviews" && `Reviews (${course.reviews.length})`}
+                      {tab === "reviews" && `Reviews (${reviews?.length})`}
                     </button>
                   ))}
                 </div>
@@ -199,6 +199,7 @@ export function CourseDetailsPage() {
           <div className="lg:col-span-1">
             <CourseSidebar
               course={course}
+              reviews={reviews || []}
               isWishlisted={isWishlisted}
               onEnrollNow={handleEnrollNow}
               onToggleWishlist={handleToggleWishlist}

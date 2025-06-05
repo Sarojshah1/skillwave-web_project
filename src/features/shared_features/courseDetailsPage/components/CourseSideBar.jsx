@@ -2,10 +2,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Play, Heart, Shield, BookOpen, CheckCircle, Star } from "@/components/ui/icons"
-import { formatPrice, calculateAverageRating } from "@/lib/utils"
+import { formatPrice, calculateAverageRating, formatDate } from "@/lib/utils"
 
-export function CourseSidebar({ course, isWishlisted, onEnrollNow, onToggleWishlist }) {
-  const averageRating = calculateAverageRating(course.reviews)
+export function CourseSidebar({ course, isWishlisted,reviews, onEnrollNow, onToggleWishlist }) {
+  const averageRating = calculateAverageRating(reviews)
 
   return (
     <div className="sticky top-8 space-y-6">
@@ -96,11 +96,11 @@ export function CourseSidebar({ course, isWishlisted, onEnrollNow, onToggleWishl
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between py-2">
             <span className="text-gray-600">Language</span>
-            <span className="font-semibold">{course.language}</span>
+            <span className="font-semibold">English</span>
           </div>
           <div className="flex items-center justify-between py-2">
             <span className="text-gray-600">Last Updated</span>
-            <span className="font-semibold">{course.lastUpdated}</span>
+            <span className="font-semibold">{formatDate(course.created_at)}</span>
           </div>
           <div className="flex items-center justify-between py-2">
             <span className="text-gray-600">Students</span>
