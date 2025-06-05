@@ -5,9 +5,6 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs))
 }
 
-export function formatPrice(price) {
-  return `NPR ${price.toLocaleString()}`
-}
 
 export function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -30,3 +27,13 @@ export function truncateText(text, maxLength) {
   if (text.length <= maxLength) return text
   return text.slice(0, maxLength) + "..."
 }
+
+export function formatPrice(price) {
+  return new Intl.NumberFormat("en-NP", {
+    style: "currency",
+    currency: "NPR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(price);
+}
+

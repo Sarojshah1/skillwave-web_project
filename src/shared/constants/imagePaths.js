@@ -9,7 +9,7 @@ export const IMAGE_PATHS = {
     logoPrimary: '/assets/icons/LOGO.svg',
     logoSecond: '/assets/icons/logo.png',
     esewa:'/assets/icons/esewa.png',
-    khalti:'/assets/icons/khalti.png'
+    khalti:'/assets/icons/Khalti.jpg'
     
   };
   

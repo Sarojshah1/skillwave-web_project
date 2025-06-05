@@ -4,7 +4,7 @@ import NoLayout from '../layouts/NoLayout';
 import TutorLayout from '../layouts/TutorLayout';
 import ProtectedRoute from '../guards/ProtectedRoute';
 import NotFound from '../shared/components/Failure/NotFound';
-
+import CheckoutPage from '@/features/students_features/checkOut/page/checkoutPage';
 import Landing from '../pages/LandingPage/LandingPage';
 import AboutUsPage from '../pages/aboutUs/AboutUsPage';
 import Signup from '../features/shared_features//auth/pages/signUp';
@@ -26,6 +26,10 @@ export const router = createBrowserRouter([
       {path: '/courses', element: <CoursesPage/>},
       {path: '/course/:courseId', element: <CourseDetailsPage/>},
       {path: '/posts', element: <ForumPage/>},
+      {
+          path: '/payment',
+          element: <CheckoutPage/>,
+        },
      
     ],
   },
