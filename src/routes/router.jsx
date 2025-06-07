@@ -14,6 +14,7 @@ import ForumPage from '@/features/shared_features/post/page/post';
 import { CourseDetailsPage } from '@/features/shared_features/courseDetailsPage/page/CourseDetailPage';
 import BlogPage from '../features/shared_features/blogs/page/BlogPage';
 import BlogDetailPage from '../features/shared_features/blogs/page/BlogDetailPage';
+import ProfileScreen from '@/features/students_features/student_profile/components/profile-screen';
 
 
 export const router = createBrowserRouter([
@@ -31,6 +32,7 @@ export const router = createBrowserRouter([
       { path: '/payment',element: <CheckoutPage/>,},
       {path: "/Blogs",element: <BlogPage/>,},
       {path: '/blogs/:id',element: <BlogDetailPage/>,},
+      {path:'/profile',element: <ProfileScreen/>}
      
     ],
   },
