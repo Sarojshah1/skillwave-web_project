@@ -176,7 +176,7 @@ const CheckoutPage = () => {
                 </div>
 
                 {/* Special Offer Banner */}
-                <div className="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl p-4 mb-6">
+                <div className="bg-gradient-to-r from-[#49BBBD] to-orange-500 rounded-2xl p-4 mb-6">
                   <div className="flex items-center space-x-3">
                     <div className="bg-white/20 rounded-full p-2">
                       <Sparkles className="w-5 h-5 text-white" />
@@ -252,8 +252,6 @@ const CheckoutPage = () => {
                   </div>
                 </button>
               </div>
-
-              {/* Security Notice */}
               <div className="bg-gray-50 rounded-xl p-4 mb-6">
                 <div className="flex items-center space-x-3">
                   <Lock className="w-5 h-5 text-gray-600" />
@@ -267,7 +265,7 @@ const CheckoutPage = () => {
               <button
                 className={`w-full py-4 rounded-2xl font-bold text-lg transition-all duration-300 ${
                   selectedPaymentMethod && !isProcessing
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transform hover:scale-105"
+                    ? "bg-[#49BBBD] text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transform hover:scale-105"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }`}
                 onClick={handlePayment}
