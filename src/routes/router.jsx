@@ -12,8 +12,8 @@ import LoginPage from '../features/shared_features/auth/pages/LoginPage';
 import CoursesPage from '../features/shared_features/courses/pages/course-page';
 import ForumPage from '@/features/shared_features/post/page/post';
 import { CourseDetailsPage } from '@/features/shared_features/courseDetailsPage/page/CourseDetailPage';
-import BlogPage from '@/features//shared_features/blogs/page/blogPage';
-import BlogDetailPage from '@/features/shared_features/blogs/page/BlogDetailPage';
+import BlogPage from '../features/shared_features/blogs/page/BlogPage';
+import BlogDetailPage from '../features/shared_features/blogs/page/BlogDetailPage';
 
 
 export const router = createBrowserRouter([
