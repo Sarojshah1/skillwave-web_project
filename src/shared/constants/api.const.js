@@ -41,7 +41,13 @@ export const ENDPOINTS = {
     GET_REVIEW_BY_COURSE_ID: "/review/reviews/course/:courseId",
     GET_REVIEW_BY_ID: "/review/:id",
     DELETE_REVIEW: "/review/delete/:id",
-  }
+  },
+  BLOG:{
+    GET_OR_CREATE_BLOGS: "/blog/blogs",
+    GET_BLOG_BY_ID: "/blog/blogs/:id",
+    UPDATE_BLOG: "/blog/blogs/:id",
+    DELETE_BLOG: "/blog/blogs/:id",
+  },
 
 
 };
