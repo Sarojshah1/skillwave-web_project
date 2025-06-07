@@ -2,15 +2,16 @@ import React from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Clock, User } from "lucide-react"
+import { formatPrice } from "@/lib/utils"
 
 const CourseCard= ({ course }) => {
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer">
       <CardHeader className="p-0">
         <img
-          src={course.thumbnail || "/placeholder.svg"}
+          src={`http://localhost:3000/thumbnails/${course.thumbnail}` || "/placeholder.svg"}
           alt={course.title}
-          className="w-full h-48 object-cover rounded-t-lg"
+          className="w-full h-48 object-contain rounded-t-lg"
         />
       </CardHeader>
       <CardContent className="p-4">
@@ -22,7 +23,7 @@ const CourseCard= ({ course }) => {
           >
             {course.level}
           </Badge>
-          <span className="text-lg font-bold text-green-600">${course.price}</span>
+          <span className="text-lg font-bold text-green-600">{formatPrice(course.price)}</span>
         </div>
 
         <h3 className="font-semibold text-lg mb-2 line-clamp-2">{course.title}</h3>

@@ -11,7 +11,7 @@ const ProfileHeader= ({ user, onProfilePicUpload }) => {
       <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
         <div className="relative group">
           <img
-            src={user.profilePic || "/placeholder.svg"}
+            src={`http://localhost:3000/profile/${user?.profile_picture}`}
             alt="Profile"
             className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
           />
@@ -31,21 +31,17 @@ const ProfileHeader= ({ user, onProfilePicUpload }) => {
         </div>
 
         <div className="flex-1 text-center md:text-left">
-          <h1 className="text-4xl font-bold mb-2">{user.name}</h1>
-          <p className="text-blue-100 text-lg mb-4 max-w-2xl">{user.bio}</p>
+          <h1 className="text-4xl font-bold mb-2">{user?.name}</h1>
+          <p className="text-blue-100 text-lg mb-4 max-w-2xl">{user?.bio}</p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-6 mb-6">
             <div className="flex items-center space-x-2">
               <BookOpen className="w-5 h-5" />
-              <span>{user.enrolledCourses} Enrolled</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Users className="w-5 h-5" />
-              <span>{user.completedCourses} Completed</span>
+              <span>{user?.enrolled_courses.length} Enrolled</span>
             </div>
             <div className="flex items-center space-x-2">
               <Award className="w-5 h-5" />
-              <span>{user.certificates} Certificates</span>
+              <span>{user?.certificates} Certificates</span>
             </div>
           </div>
 

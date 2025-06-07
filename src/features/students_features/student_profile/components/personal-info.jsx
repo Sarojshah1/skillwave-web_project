@@ -1,6 +1,7 @@
 import React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, MapPin, Calendar, Phone, UserIcon } from "lucide-react"
+import { formatDate } from "@/lib/utils"
 
 
 const PersonalInfo = ({ user }) => {
@@ -26,7 +27,7 @@ const PersonalInfo = ({ user }) => {
             <Phone className="w-4 h-4 text-gray-500" />
             <div>
               <p className="text-sm text-gray-500">Phone</p>
-              <p className="font-medium">{user.phone || "+1 (555) 123-4567"}</p>
+              <p className="font-medium">{user.phone || "9800000000"}</p>
             </div>
           </div>
 
@@ -34,7 +35,7 @@ const PersonalInfo = ({ user }) => {
             <MapPin className="w-4 h-4 text-gray-500" />
             <div>
               <p className="text-sm text-gray-500">Location</p>
-              <p className="font-medium">{user.location || "San Francisco, CA"}</p>
+              <p className="font-medium">{user.location || "HattiBan,Lalitpur,Nepal"}</p>
             </div>
           </div>
 
@@ -42,7 +43,7 @@ const PersonalInfo = ({ user }) => {
             <Calendar className="w-4 h-4 text-gray-500" />
             <div>
               <p className="text-sm text-gray-500">Member Since</p>
-              <p className="font-medium">{user.joinDate || "January 2023"}</p>
+              <p className="font-medium">{formatDate(user.created_at) || "January 2023"}</p>
             </div>
           </div>
         </CardContent>
