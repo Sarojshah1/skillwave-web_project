@@ -209,9 +209,9 @@ export function PostCard({ post, currentUser }) {
               <Avatar className="h-9 w-9 ring-2 ring-indigo-500">
                 <AvatarImage
                   src={`http://localhost:3000/profile/${currentUser?.profile_picture}` || "/placeholder.svg"}
-                  alt={currentUser.name}
+                  alt={currentUser?.name}
                 />
-                <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
+                <AvatarFallback>{currentUser?.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div className="relative flex-1">
                 <Textarea

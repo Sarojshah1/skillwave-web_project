@@ -2,7 +2,7 @@ import { useState } from "react";
 import { authService } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { storageService } from "../../../../infrastructure/storage/authstorageService";
+import { storageService } from "@/infrastructure/storage/authstorageService";
 
 export const useAuth = () => {
   const [loading, setLoading] = useState(false);
@@ -44,8 +44,8 @@ export const useAuth = () => {
           payload.append(key, value);
         }
       });
-      const { token, role, id } = await authService.login(payload);
-      storageService.setAuthData({ token, role, id });
+      const { token, role, _id } = await authService.login(payload);
+      storageService.setAuthData({ token, role, _id });
       if (role === "tutor") {
         navigate("/tutor/dashboard");
       } else if (role === "student") {

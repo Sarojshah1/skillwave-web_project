@@ -1,4 +1,3 @@
-"use client"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
@@ -11,8 +10,6 @@ import { faqs, categories } from "../data/faqs"
 export default function FAQSection() {
   const [searchQuery, setSearchQuery] = useState("")
   const [activeCategory, setActiveCategory] = useState("all")
-
-  // Filter FAQs based on search query and active category
   const filteredFaqs = faqs.filter((faq) => {
     const matchesSearch =
       faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||

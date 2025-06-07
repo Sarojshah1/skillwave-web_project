@@ -1,9 +1,7 @@
-
 import { api } from "../../../../infrastructure/api/api";
 import { ENDPOINTS } from "../../../../shared/constants/api.const";
 
 export const authService = {
-
   register: async (formData) => {
     const response = await api.post(ENDPOINTS.AUTH.REGISTER, formData, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -13,6 +11,7 @@ export const authService = {
 
   login: async (credentials) => {
     const response = await api.post(ENDPOINTS.AUTH.LOGIN, credentials);
+    console.log("Response from login:", response.data); 
     return response.data;
   },
 
@@ -40,13 +39,15 @@ export const authService = {
     const formData = new FormData();
     formData.append("profile_picture", file);
 
-    const response = await api.put(ENDPOINTS.USER.UPDATE_PROFILE_PICTURE, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+    const response = await api.put(
+      ENDPOINTS.USER.UPDATE_PROFILE_PICTURE,
+      formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
     return response.data;
   },
-
-  // Request OTP for email-based actions
   sendOtp: async (email) => {
     const response = await api.post(ENDPOINTS.OTP.SEND_OTP, { email });
     return response.data;
@@ -60,4 +61,3 @@ export const authService = {
     return response.data;
   },
 };
-

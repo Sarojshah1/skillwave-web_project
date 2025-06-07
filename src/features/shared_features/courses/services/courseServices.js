@@ -4,7 +4,6 @@ import { ENDPOINTS } from "../../../../shared/constants/api.const";
 export const courseService = {
   getCourses: async(params) => {
     const data=await api.get(ENDPOINTS.COURCES.GET_COURSES, { params });
-    console.log("data", data.data.courses);
     return data.data.courses;
   },
 
