@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useBlogById } from "@/features/shared_features/blogs/hooks/useBlogById";
+import PDFViewer from "@/features/shared_features/blogs/components/PdfViewr";
 import {
   FaCalendarDay,
   FaTags,
@@ -13,9 +14,11 @@ import {
   FaHeart,
 } from "react-icons/fa";
 import { useState } from "react";
+import SimplePDFViewer from "../components/SimplePDFViewr";
+import { formatDate } from "@/lib/utils";
 
 const BlogDetailPage = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const { data: blog, isLoading, isError } = useBlogById(id);
@@ -23,6 +26,7 @@ const BlogDetailPage = () => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(120);
   const [comment, setComment] = useState("");
+  const pdfUrl = `http://localhost:3000/uploads/pdfs/${blog?.content}`;
 
   const handleLike = () => {
     setLiked(!liked);
@@ -46,10 +50,14 @@ const BlogDetailPage = () => {
 
   if (isError || !blog) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#49BBBD] via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h2>
-          <p className="text-gray-600 mb-6">The article you're looking for doesn't exist or has been removed.</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Article Not Found
+          </h2>
+          <p className="text-gray-600 mb-6">
+            The article you're looking for doesn't exist or has been removed.
+          </p>
           <button
             onClick={() => navigate("/blogs")}
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium"
@@ -62,22 +70,10 @@ const BlogDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-10 backdrop-blur-sm bg-white/95">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <button
-            onClick={() => navigate("/blogs")}
-            className="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium"
-          >
-            <FaArrowLeft className="w-4 h-4 mr-2" />
-            Back to Articles
-          </button>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 mt-10">
       <div className="max-w-4xl mx-auto px-4 py-8">
         <article className="bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="p-8 md:p-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white relative overflow-hidden">
+          <div className="p-8 md:p-12 bg-[#49BBBD] text-white relative overflow-hidden">
             <div className="relative z-10">
               <div className="flex flex-wrap gap-2 mb-6">
                 {blog.tags?.map((tag, index) => (
@@ -91,22 +87,24 @@ const BlogDetailPage = () => {
                 ))}
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">{blog.title}</h1>
+              <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                {blog.title}
+              </h1>
 
               <div className="flex flex-wrap items-center gap-6 text-blue-100">
-                <div className="flex items-center">
-                  <FaUser className="w-4 h-4 mr-2" />
-                  <span className="font-medium">{blog.user_id?.name || "Unknown Author"}</span>
+                <div className="flex items-center space-x-2">
+                  <img
+                    src={`http://localhost:3000/profile/${blog.user_id?.profile_picture}`}
+                    alt={blog.user_id?.name}
+                    className="w-6 h-6 rounded-full"
+                  />
+                  <span className="font-medium">
+                    {blog.user_id?.name || "Unknown Author"}
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <FaCalendarDay className="w-4 h-4 mr-2" />
-                  <span>
-                    {new Date(blog.created_at).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
+                  <span>{formatDate(blog.created_at)}</span>
                 </div>
                 <div className="flex items-center">
                   <FaClock className="w-4 h-4 mr-2" />
@@ -114,18 +112,14 @@ const BlogDetailPage = () => {
                 </div>
               </div>
             </div>
-
-            {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
           </div>
-
-          {/* Article Content */}
           <div className="p-8 md:p-12">
-            {/* PDF Viewer */}
             {blog.content && (
               <div className="mb-12">
-                <div className="bg-gray-50 rounded-2xl p-6 border-2 border-dashed border-gray-200">
+                <div className="bg-gray-50 rounded-2xl p-6 border-2 space-y-4 border-dashed border-gray-200">
+                  <SimplePDFViewer pdfUrl={pdfUrl} title={blog.title} />
                   <iframe
                     src={`http://localhost:3000/uploads/pdfs/${blog.content}`}
                     className="w-full h-[600px] md:h-[800px] rounded-xl shadow-lg border border-gray-200"
@@ -134,8 +128,6 @@ const BlogDetailPage = () => {
                 </div>
               </div>
             )}
-
-            {/* Engagement Section */}
             <div className="flex items-center justify-between py-6 border-y border-gray-100 mb-8">
               <div className="flex items-center space-x-6">
                 <button
@@ -146,7 +138,9 @@ const BlogDetailPage = () => {
                       : "bg-gray-50 text-gray-600 border border-gray-200 hover:bg-red-50 hover:text-red-600"
                   }`}
                 >
-                  <FaHeart className={`w-4 h-4 ${liked ? "fill-current" : ""}`} />
+                  <FaHeart
+                    className={`w-4 h-4 ${liked ? "fill-current" : ""}`}
+                  />
                   <span className="font-medium">{likeCount}</span>
                 </button>
                 <div className="flex items-center space-x-2 text-gray-600">
@@ -167,10 +161,10 @@ const BlogDetailPage = () => {
                 </button>
               </div>
             </div>
-
-            {/* Comments Section */}
             <div className="bg-white rounded-2xl border-2 border-gray-100 p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Join the Discussion</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Join the Discussion
+              </h3>
               <form onSubmit={handleCommentSubmit} className="mb-8">
                 <textarea
                   value={comment}
@@ -180,7 +174,9 @@ const BlogDetailPage = () => {
                   placeholder="Share your thoughts about this article..."
                 />
                 <div className="flex justify-between items-center mt-4">
-                  <p className="text-sm text-gray-500">Be respectful and constructive in your comments.</p>
+                  <p className="text-sm text-gray-500">
+                    Be respectful and constructive in your comments.
+                  </p>
                   <button
                     type="submit"
                     disabled={!comment.trim()}
