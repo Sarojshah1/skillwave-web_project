@@ -15,6 +15,8 @@ import { CourseDetailsPage } from '@/features/shared_features/courseDetailsPage/
 import BlogPage from '../features/shared_features/blogs/page/BlogPage';
 import BlogDetailPage from '../features/shared_features/blogs/page/BlogDetailPage';
 import ProfileScreen from '@/features/students_features/student_profile/components/profile-screen';
+import AuthProtectedRoute from '@/guards/AuthProtectedRoute';
+import EditProfilePage from '@/features/students_features/edit_profile/pages/editProfile';
 
 
 export const router = createBrowserRouter([
@@ -26,13 +28,70 @@ export const router = createBrowserRouter([
       { path: '/aboutus', element: <AboutUsPage/> },
       { path: '/signup', element: <Signup/> },
       { path: '/login', element: <LoginPage/> },
-      {path: '/courses', element: <CoursesPage/>},
-      {path: '/course/:courseId', element: <CourseDetailsPage/>},
-      {path: '/posts', element: <ForumPage/>},
-      { path: '/payment',element: <CheckoutPage/>,},
-      {path: "/Blogs",element: <BlogPage/>,},
-      {path: '/blogs/:id',element: <BlogDetailPage/>,},
-      {path:'/profile',element: <ProfileScreen/>}
+      {
+        path: '/courses',
+        element: (
+          <AuthProtectedRoute>
+            <CoursesPage />
+          </AuthProtectedRoute>
+        ),
+      },
+      {
+        path: '/course/:courseId',
+        element: (
+          <AuthProtectedRoute>
+            <CourseDetailsPage />
+          </AuthProtectedRoute>
+        ),
+      },
+      {
+        path: '/posts',
+        element: (
+          <AuthProtectedRoute>
+            <ForumPage />
+          </AuthProtectedRoute>
+        ),
+      },
+      {
+        path: '/payment',
+        element: (
+          <AuthProtectedRoute>
+            <CheckoutPage />
+          </AuthProtectedRoute>
+        ),
+      },
+      {
+        path: '/Blogs',
+        element: (
+          <AuthProtectedRoute>
+            <BlogPage />
+          </AuthProtectedRoute>
+        ),
+      },
+      {
+        path: '/blogs/:id',
+        element: (
+          <AuthProtectedRoute>
+            <BlogDetailPage />
+          </AuthProtectedRoute>
+        ),
+      },
+      {
+        path: '/profile',
+        element: (
+          <AuthProtectedRoute>
+            <ProfileScreen />
+          </AuthProtectedRoute>
+        ),
+      },
+       {
+        path: '/edit-profile',
+        element: (
+          <AuthProtectedRoute>
+            <EditProfilePage/>
+          </AuthProtectedRoute>
+        ),
+      },
      
     ],
   },
