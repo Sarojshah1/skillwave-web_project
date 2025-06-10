@@ -48,6 +48,9 @@ export const ENDPOINTS = {
     UPDATE_BLOG: "/blog/blogs/:id",
     DELETE_BLOG: "/blog/blogs/:id",
   },
+  ENROLL:{
+    GET_ENROLLED_COURSES: "/enroll/user",
+  }
 
 
 };

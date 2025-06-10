@@ -4,9 +4,7 @@ import { CourseHero } from "../components/CourseHero"
 import { CourseSidebar } from "../components/CourseSideBar"
 import { ReviewForm } from "../components/RrviewForm"
 import { ReviewList } from "../components/ReviewList"
-import { LoadingSpinner } from "@/components/ui/LoadingSpinner"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { RatingStars } from "@/components/ui/rating-stars"
 import { CheckCircle, BookOpen, Clock, Users, Award, Star } from "@/components/ui/icons"
@@ -34,16 +32,6 @@ export function CourseDetailsPage() {
   }
    const { data: reviews, } = useReviewsByCourseId(course?._id)
 
-//   if (isLoading) {
-//     return (
-//       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
-//         <div className="text-center">
-//           <LoadingSpinner size="lg" className="mx-auto mb-4" />
-//           <p className="text-gray-600 text-lg">Loading amazing content...</p>
-//         </div>
-//       </div>
-//     )
-//   }
 
   if (!course) {
     return (
