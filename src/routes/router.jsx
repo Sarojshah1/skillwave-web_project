@@ -17,6 +17,7 @@ import BlogDetailPage from '../features/shared_features/blogs/page/BlogDetailPag
 import ProfileScreen from '@/features/students_features/student_profile/components/profile-screen';
 import AuthProtectedRoute from '@/guards/AuthProtectedRoute';
 import EditProfilePage from '@/features/students_features/edit_profile/pages/editProfile';
+import MyLearnings from '@/features/students_features/MyLearnings/pages/My-Learning';
 
 
 export const router = createBrowserRouter([
@@ -92,6 +93,12 @@ export const router = createBrowserRouter([
           </AuthProtectedRoute>
         ),
       },
+      {
+          path: '/learnings',
+          element: <AuthProtectedRoute>
+            <MyLearnings/>
+          </AuthProtectedRoute>,
+        },
      
     ],
   },
