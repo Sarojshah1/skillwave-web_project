@@ -19,6 +19,7 @@ import AuthProtectedRoute from '@/guards/AuthProtectedRoute';
 import EditProfilePage from '@/features/students_features/edit_profile/pages/editProfile';
 import MyLearnings from '@/features/students_features/MyLearnings/pages/My-Learning';
 import CourseContentPage from '@/features/students_features/MyLearnings/pages/course-content-page';
+import ChangePasswordPage from '@/features/students_features/changePassword/pages/change-password-page';
 
 
 export const router = createBrowserRouter([
@@ -98,6 +99,12 @@ export const router = createBrowserRouter([
           path: '/learnings',
           element: <AuthProtectedRoute>
             <MyLearnings/>
+          </AuthProtectedRoute>,
+        },
+         {
+          path: '/change-password',
+          element: <AuthProtectedRoute>
+            <ChangePasswordPage/>
           </AuthProtectedRoute>,
         },
      
