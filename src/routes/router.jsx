@@ -122,6 +122,7 @@ export const router = createBrowserRouter([
         <TutorLayout />
       </ProtectedRoute>
     ),
+    path: '/tutor',
     errorElement: <NotFound />,
     children: [
       
