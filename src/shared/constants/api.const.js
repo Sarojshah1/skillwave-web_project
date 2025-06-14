@@ -19,6 +19,7 @@ export const ENDPOINTS = {
     GET_CATEGORY:"/category"
   },
   COURCES:{
+    ADD_COURSE: "/courses",
     GET_COURSES:"/courses/pagination",
     GET_COURSE_BY_ID:"/courses/:id",
     GET_COURSE_BY_CATEGORY:"/courses/category/:categoryId",

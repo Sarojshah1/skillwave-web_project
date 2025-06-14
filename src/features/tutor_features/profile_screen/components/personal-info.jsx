@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button.jsx"
 import { Input } from "@/components/ui/input.jsx"
 import { Label } from "@/components/ui/label.jsx"
 import { Textarea } from "@/components/ui/textarea"
+import { useUpdateUserProfile } from "@/features/students_features/edit_profile/hooks/useUpdateUserProfile"
 
 export function PersonalInfo({ tutor }) {
+      const { mutate: updateUserProfile, isLoading: isSaving } = useUpdateUserProfile();
     console.log("Tutor data:", tutor)
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({
@@ -15,8 +17,16 @@ export function PersonalInfo({ tutor }) {
     bio: tutor?.bio,
   })
 
-  const handleSave = () => {
 
+  const handleSave = () => {
+        const userDetails = {
+      name: formData.name,
+      email: formData.email,
+      bio: formData.bio,
+    };
+     console.log("Saving profile data:", userDetails)
+   const tutorId= tutor?._id;
+ updateUserProfile({ tutorId, userDetails });
     setIsEditing(false)
   }
 
@@ -63,7 +73,7 @@ export function PersonalInfo({ tutor }) {
                   onChange={(e) => handleInputChange("name", e.target.value)}
                 />
               ) : (
-                <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-md">{formData.name}</div>
+                <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-md">{tutor?.name}</div>
               )}
             </div>
           </div>
@@ -80,7 +90,7 @@ export function PersonalInfo({ tutor }) {
                 />
               ) : (
                 <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-md flex items-center gap-2">
-                  <span>{formData.email}</span>
+                  <span>{tutor?.email}</span>
                 </div>
               )}
             </div>
@@ -98,7 +108,7 @@ export function PersonalInfo({ tutor }) {
                 placeholder="Tell us about yourself..."
               />
             ) : (
-              <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-md">{formData.bio}</div>
+              <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-md">{tutor?.bio}</div>
             )}
           </div>
         </CardContent>
