@@ -5,11 +5,13 @@ import { CourseCard } from "../components/Course-card"
 import { LearningStats } from "../components/Learning-stats"
 import { FilterTabs } from "../components/filter-tabs"
 import { useMyLearnings} from "../hooks/useMyLearnings"
+import { useNavigate } from "react-router"
 
 export default function MyLearnings() {
     const { data: enrollments = [], isLoading, error } = useMyLearnings()
   const [activeFilter, setActiveFilter] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
+  const navigate=useNavigate()
 
   const filteredEnrollments = useMemo(() => {
     let filtered = enrollments
@@ -27,6 +29,7 @@ export default function MyLearnings() {
   }, [enrollments, activeFilter, searchQuery])
 
   const handleContinueLearning = (enrollment) => {
+    navigate(`/content/${enrollment.course_id._id}`)
     console.log("Continue learning:", enrollment.course_id.title)
   }
 

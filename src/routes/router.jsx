@@ -18,6 +18,7 @@ import ProfileScreen from '@/features/students_features/student_profile/componen
 import AuthProtectedRoute from '@/guards/AuthProtectedRoute';
 import EditProfilePage from '@/features/students_features/edit_profile/pages/editProfile';
 import MyLearnings from '@/features/students_features/MyLearnings/pages/My-Learning';
+import CourseContentPage from '@/features/students_features/MyLearnings/pages/course-content-page';
 
 
 export const router = createBrowserRouter([
@@ -105,7 +106,7 @@ export const router = createBrowserRouter([
   {
     element: <NoLayout />,
     children: [
-   
+   { path: "/content/:id", element: <CourseContentPage/>},
     ],
   },
   {
