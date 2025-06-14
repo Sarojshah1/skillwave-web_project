@@ -1,4 +1,3 @@
-
 import {
   LogOut,
   PlusCircle,
@@ -27,16 +26,26 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { TutorProfile } from "./tutor-profile"
+import { useGlobalAuth } from "@/hooks/useAuth";
 
+// Reusable Stat Card Component
+function StatCard({ icon: Icon, value, label, iconColor }) {
+  return (
+    <div className="bg-white/60 dark:bg-gray-800/60 rounded-lg p-2 text-center backdrop-blur-sm">
+      <div className={`flex items-center justify-center ${iconColor} mb-1`}>
+        <Icon className="h-4 w-4" />
+      </div>
+      <div className="text-xs font-semibold text-gray-900 dark:text-gray-100">{value}</div>
+      <div className="text-[10px] text-gray-600 dark:text-gray-400">{label}</div>
+    </div>
+  )
+}
 
 export function TutorPortalSidebar({ activeSection, setActiveSection }) {
-  const tutorData = {
-    name: "Dr. Sarah Johnson",
-    email: "sarah.johnson@example.com",
-    role: "Senior Tutor",
-    avatar: "/placeholder.svg?height=80&width=80",
-  }
-    const menuItems = [
+    const { isLoggedIn, profile, logout } = useGlobalAuth();
+  const tutorData = profile
+
+  const menuItems = [
     {
       section: "main",
       label: "Overview",
@@ -115,123 +124,86 @@ export function TutorPortalSidebar({ activeSection, setActiveSection }) {
 
   return (
     <Sidebar className="border-r-0">
+      {/* Header */}
       <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
         <TutorProfile tutor={tutorData} />
         <div className="grid grid-cols-3 gap-2 px-2 pb-2">
-          <div className="bg-white/60 dark:bg-gray-800/60 rounded-lg p-2 text-center backdrop-blur-sm">
-            <div className="flex items-center justify-center text-blue-600 dark:text-blue-400 mb-1">
-              <Users className="h-3 w-3" />
-            </div>
-            <div className="text-xs font-semibold text-gray-900 dark:text-gray-100">1.2k</div>
-            <div className="text-[10px] text-gray-600 dark:text-gray-400">Students</div>
-          </div>
-          <div className="bg-white/60 dark:bg-gray-800/60 rounded-lg p-2 text-center backdrop-blur-sm">
-            <div className="flex items-center justify-center text-green-600 dark:text-green-400 mb-1">
-              <Star className="h-3 w-3" />
-            </div>
-            <div className="text-xs font-semibold text-gray-900 dark:text-gray-100">4.8</div>
-            <div className="text-[10px] text-gray-600 dark:text-gray-400">Rating</div>
-          </div>
-          <div className="bg-white/60 dark:bg-gray-800/60 rounded-lg p-2 text-center backdrop-blur-sm">
-            <div className="flex items-center justify-center text-purple-600 dark:text-purple-400 mb-1">
-              <TrendingUp className="h-3 w-3" />
-            </div>
-            <div className="text-xs font-semibold text-gray-900 dark:text-gray-100">+18%</div>
-            <div className="text-[10px] text-gray-600 dark:text-gray-400">Growth</div>
-          </div>
+          <StatCard icon={Users} value="1.2k" label="Students" iconColor="text-blue-600 dark:text-blue-400" />
+          <StatCard icon={Star} value="4.8" label="Rating" iconColor="text-green-600 dark:text-green-400" />
+          <StatCard icon={TrendingUp} value="+18%" label="Growth" iconColor="text-purple-600 dark:text-purple-400" />
         </div>
       </SidebarHeader>
 
+      {/* Menu */}
       <SidebarContent className="bg-gradient-to-b from-gray-50/50 to-white dark:from-gray-900/50 dark:to-gray-900">
         {menuItems.map((section) => (
-          <SidebarGroup key={section.section} className="px-2 ">
+          <SidebarGroup key={section.section} className="px-2">
             <SidebarGroupLabel className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
               {section.label}
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu className="space-y-2">
-                {section.items.map((item) => (
-                  <SidebarMenuItem key={item.id}>
-                    <SidebarMenuButton
-                      onClick={() => setActiveSection(item.id)}
-                      isActive={activeSection === item.id}
-                      className={`
-                        group relative overflow-hidden rounded-xl transition-all duration-200 ease-in-out
-                        ${
-                          activeSection === item.id
-                            ? "bg-[#49BBBD] text-white shadow-lg shadow-blue-500/25 scale-[1.02] "
+                {section.items.map((item) => {
+                  const isActive = activeSection === item.id
+                  return (
+                    <SidebarMenuItem key={item.id}>
+                      <SidebarMenuButton
+                        onClick={() => setActiveSection(item.id)}
+                        isActive={isActive}
+                        className={`
+                          group relative overflow-hidden rounded-xl transition-all duration-200 ease-in-out
+                          ${isActive
+                            ? "bg-[#49BBBD] text-white shadow-lg shadow-blue-500/25 scale-[1.02]"
                             : "hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-gray-800 dark:hover:to-gray-750 hover:shadow-md hover:scale-[1.01]"
-                        }
-                      `}
-                    >
-                      <div className="flex items-center gap-3 w-full">
-                        <div
-                          className={`
-                          p-2 rounded-lg transition-colors duration-200
-                          ${
-                            activeSection === item.id
-                              ? "bg-white/20"
-                              : "bg-gray-100 dark:bg-gray-800 group-hover:bg-white dark:group-hover:bg-gray-700"
                           }
                         `}
-                        >
-                          <item.icon
-                            className={`h-4 w-4 ${
-                              activeSection === item.id
-                                ? "text-white"
-                                : "text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100"
-                            }`}
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div
-                            className={`font-medium text-sm ${
-                              activeSection === item.id ? "text-white" : "text-gray-900 dark:text-gray-100"
+                      >
+                        <div className="flex items-center gap-3 w-full">
+                          <div className={`p-2 rounded-lg transition-colors duration-200
+                            ${isActive
+                              ? "bg-white/20"
+                              : "bg-gray-100 dark:bg-gray-800 group-hover:bg-white dark:group-hover:bg-gray-700"
                             }`}
                           >
-                            {item.label}
+                            <item.icon className={`h-4 w-4 ${isActive ? "text-white" : "text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100"}`} />
                           </div>
-                          <div
-                            className={`text-xs ${
-                              activeSection === item.id ? "text-white/80" : "text-gray-500 dark:text-gray-400"
-                            }`}
-                          >
-                            {item.description}
+                          <div className="flex-1 min-w-0">
+                            <div className={`font-medium text-sm ${isActive ? "text-white" : "text-gray-900 dark:text-gray-100"}`}>
+                              {item.label}
+                            </div>
+                            <div className={`text-xs ${isActive ? "text-white/80" : "text-gray-500 dark:text-gray-400"}`}>
+                              {item.description}
+                            </div>
                           </div>
-                        </div>
-                        {item.badge && (
-                          <div
-                            className={`
-                            px-2 py-1 rounded-full text-xs font-medium
-                            ${
-                              activeSection === item.id
+                          {item.badge && (
+                            <div className={`px-2 py-1 rounded-full text-xs font-medium
+                              ${isActive
                                 ? "bg-white/20 text-white"
                                 : item.badge === "New"
                                   ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                                   : item.badge.startsWith("$")
                                     ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
                                     : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-                            }
-                          `}
-                          >
-                            {item.badge}
-                          </div>
+                              }
+                            `}>
+                              {item.badge}
+                            </div>
+                          )}
+                        </div>
+                        {isActive && (
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-full" />
                         )}
-                      </div>
-
-                      {/* Active indicator */}
-                      {activeSection === item.id && (
-                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-r-full" />
-                      )}
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
       </SidebarContent>
 
+      {/* Footer */}
       <SidebarFooter className="border-t border-border/50 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20">
         <SidebarMenu>
           <SidebarMenuItem>
@@ -249,6 +221,7 @@ export function TutorPortalSidebar({ activeSection, setActiveSection }) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   )

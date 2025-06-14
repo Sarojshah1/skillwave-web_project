@@ -3,6 +3,7 @@ import { TutorPortalSidebar } from '@/shared/components/SideBar/tutor-portal-sid
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
+import { DashboardContent } from '@/features/tutor_features/dashboard/page/dashboard-content';
 // import Sidebar from '@/components/Tutor_Components/sidebar/Sidebar.jsx';
 
 const TutorLayout = () => {
@@ -15,7 +16,7 @@ const TutorLayout = () => {
           <div className="flex flex-col w-full">
             <TutorPortalHeader activeSection={activeSection} />
             <main className="flex-1 overflow-auto p-6">
-              <Outlet/>
+              {activeSection === "dashboard" && <DashboardContent/>}
             </main>
           </div>
         </SidebarInset>
