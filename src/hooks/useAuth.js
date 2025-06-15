@@ -1,10 +1,12 @@
 
 
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { storageService } from "../infrastructure/storage/authstorageService";
 import { globalAuthService } from "../services/userServices";
+import { useNavigate } from "react-router";
 
 export const useGlobalAuth = () => {
+  const navigate=useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState(null);
   const [userId, setUserId] = useState(null);
@@ -38,6 +40,7 @@ export const useGlobalAuth = () => {
     setRole(null);
     setUserId(null);
     setProfile(null);
+    navigate("/login");
   };
 
   return {

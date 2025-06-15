@@ -6,6 +6,7 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
 import { DashboardContent } from '@/features/tutor_features/dashboard/page/dashboard-content';
 import { ProfileContent } from '@/features/tutor_features/profile_screen/pages/profile-content';
 import { AddCourseContent } from '@/features/tutor_features/courses/page/add-course-content';
+import BlogPage from '@/features/shared_features/blogs/page/BlogPage';
 // import Sidebar from '@/components/Tutor_Components/sidebar/Sidebar.jsx';
 
 const TutorLayout = () => {
@@ -21,6 +22,7 @@ const TutorLayout = () => {
               {activeSection === "dashboard" && <DashboardContent/>}
               {activeSection === "add-course" && <AddCourseContent/>}
               {activeSection === "profile" && <ProfileContent/>}
+              {activeSection==="view-blogs" && <BlogPage/>}
             </main>
           </div>
         </SidebarInset>
