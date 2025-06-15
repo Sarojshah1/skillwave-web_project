@@ -105,13 +105,6 @@ export function TutorPortalSidebar({ activeSection, setActiveSection }) {
           description: "Payment history",
         },
         {
-          id: "settings",
-          label: "Settings",
-          icon: Settings,
-          badge: null,
-          description: "Account preferences",
-        },
-        {
           id: "profile",
           label: "Profile",
           icon: User,
@@ -207,7 +200,9 @@ export function TutorPortalSidebar({ activeSection, setActiveSection }) {
       <SidebarFooter className="border-t border-border/50 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="group relative overflow-hidden rounded-xl transition-all duration-200 ease-in-out hover:bg-gradient-to-r hover:from-red hover:to-pink-100 dark:hover:from-red-900/30 dark:hover:to-pink-900/30 hover:shadow-md hover:scale-[1.01]">
+            <SidebarMenuButton 
+            onClick={logout}
+            className="group relative overflow-hidden rounded-xl transition-all duration-200 ease-in-out hover:bg-gradient-to-r hover:from-red hover:to-pink-100 dark:hover:from-red-900/30 dark:hover:to-pink-900/30 hover:shadow-md hover:scale-[1.01]">
               <div className="flex items-center gap-3 w-full">
                 <div className="p-2 rounded-lg bg-red dark:bg-red-900/30 group-hover:bg-red-200 dark:group-hover:bg-red-800/40 transition-colors duration-200">
                   <LogOut className="h-4 w-4 text-red-600 dark:text-red-400" />
