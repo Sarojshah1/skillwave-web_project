@@ -47,7 +47,7 @@ export const useAuth = () => {
       const { token, role, _id } = await authService.login(payload);
       storageService.setAuthData({ token, role, _id });
       if (role === "tutor") {
-        navigate("/tutor/dashboard");
+        navigate("/tutor");
       } else if (role === "student") {
         navigate("/");
       } else if (role === "admin") {
