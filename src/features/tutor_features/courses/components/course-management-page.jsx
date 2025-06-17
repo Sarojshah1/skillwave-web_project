@@ -36,13 +36,11 @@ export function CourseManagementPage({ course, onBack }) {
           Back to Courses
         </Button>
       </div>
-
-      {/* Course Info */}
       <Card className="mb-6">
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
             <img
-              src={course.thumbnail || "/placeholder.svg"}
+              src={`http://localhost:3000/thumbnails/${course.thumbnail}`}
               alt={course.title}
               className="w-24 h-24 object-cover rounded-lg"
             />
@@ -67,13 +65,11 @@ export function CourseManagementPage({ course, onBack }) {
         </CardContent>
       </Card>
 
-      {/* Action Buttons */}
       <div className="flex gap-4 mb-6">
-        <AddLessonButton courseId={course.id} onLessonAdded={handleContentAdded} />
+        <AddLessonButton courseId={course._id} onLessonAdded={handleContentAdded} />
         <AddQuizButton courseId={course.id} onQuizAdded={handleContentAdded} />
       </div>
 
-      {/* Lessons Section */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

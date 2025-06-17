@@ -23,7 +23,12 @@ export const ENDPOINTS = {
     GET_COURSES:"/courses/pagination",
     GET_COURSE_BY_ID:"/courses/:id",
     GET_COURSE_BY_CATEGORY:"/courses/category/:categoryId",
+    GET_CREATOR_COURSE: "/courses/creator",
     
+  },
+  LESSONS:{
+    CREATE_LESSONS: "/lesson/lessons",
+
   },
   POST: {
     CREATE_GET_POST: "/post",

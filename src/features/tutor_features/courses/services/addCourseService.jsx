@@ -10,5 +10,14 @@ export const addCourseService = {
             }}
         );
         return response.data;
-    }
+    },
+
+    getCreatorCourses: async () => {
+        const response = await api.get(ENDPOINTS.COURCES.GET_CREATOR_COURSE);
+        return response.data;
+    },
+    createLessons: async (data) => {
+        const response = await api.post(ENDPOINTS.LESSONS.CREATE_LESSONS, data);
+        return response.data;
+    },
 }
