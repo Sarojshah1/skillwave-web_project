@@ -26,6 +26,10 @@ export const ENDPOINTS = {
     GET_CREATOR_COURSE: "/courses/creator",
     
   },
+  LESSONS:{
+    CREATE_LESSONS: "/lesson/lessons",
+
+  },
   POST: {
     CREATE_GET_POST: "/post",
     GET_POST_BY_ID: "/post/:id",

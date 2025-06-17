@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { X, Upload, FileText } from 'lucide-react'
+import { useCreateLessons } from "../../courses/hooks/useCreateLessons"  
 
 export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
   const [formData, setFormData] = useState({
@@ -12,9 +13,11 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
     order: "",
   })
   const [contentFile, setContentFile] = useState(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
+
+  // Use your mutation hook here
+  const { mutate: createLesson, isLoading } = useCreateLessons()
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0]
@@ -29,7 +32,7 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setError("")
     setSuccess("")
@@ -44,26 +47,20 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
       return
     }
 
-    setIsSubmitting(true)
+    // Prepare FormData
+    const formDataToSend = new FormData()
+    formDataToSend.append("course_id", courseId)
+    formDataToSend.append("title", formData.title)
+    formDataToSend.append("video_url", formData.video_url)
+    formDataToSend.append("order", formData.order)
 
-    try {
-      const formDataToSend = new FormData()
-      formDataToSend.append("course_id", courseId)
-      formDataToSend.append("title", formData.title)
-      formDataToSend.append("video_url", formData.video_url)
-      formDataToSend.append("order", formData.order)
+    if (contentFile) {
+      formDataToSend.append("content", contentFile)
+    }
 
-      if (contentFile) {
-        formDataToSend.append("content", contentFile)
-      }
-
-      const response = await fetch("/api/lessons", {
-        method: "POST",
-        body: formDataToSend,
-      })
-
-      if (response.ok) {
-        const savedLesson = await response.json()
+    // Use the mutation hook to create lesson
+    createLesson(formDataToSend, {
+      onSuccess: (savedLesson) => {
         setSuccess("Lesson created successfully!")
         console.log("Lesson created:", savedLesson)
 
@@ -79,16 +76,11 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
 
           onLessonAdded()
         }, 1500)
-      } else {
-        const errorData = await response.json()
-        throw new Error(errorData.message || "Failed to create lesson")
+      },
+      onError: (err) => {
+        setError(err?.message || "Failed to create lesson. Please try again.")
       }
-    } catch (error) {
-      console.error("Error creating lesson:", error)
-      setError(error instanceof Error ? error.message : "Something went wrong. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
+    })
   }
 
   if (!isOpen) return null
@@ -98,7 +90,7 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
       <Card className="w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>Add New Lesson</CardTitle>
-          <Button variant="ghost" size="sm" onClick={onClose}>
+          <Button variant="ghost" size="sm" onClick={onClose} disabled={isLoading}>
             <X className="w-4 h-4" />
           </Button>
         </CardHeader>
@@ -127,6 +119,7 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 required
+                disabled={isLoading}
               />
             </div>
 
@@ -139,6 +132,7 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
                 placeholder="https://youtube.com/watch?v=..."
                 value={formData.video_url}
                 onChange={(e) => setFormData({ ...formData, video_url: e.target.value })}
+                disabled={isLoading}
               />
               <p className="text-xs text-gray-500">Add a YouTube, Vimeo, or other video URL</p>
             </div>
@@ -154,6 +148,7 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
                 value={formData.order}
                 onChange={(e) => setFormData({ ...formData, order: e.target.value })}
                 required
+                disabled={isLoading}
               />
               <p className="text-xs text-gray-500">Specify the order of this lesson in the course</p>
             </div>
@@ -175,6 +170,7 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
                         const fileInput = document.getElementById("content-file")
                         if (fileInput) fileInput.value = ""
                       }}
+                      disabled={isLoading}
                     >
                       <X className="h-4 w-4" />
                     </Button>
@@ -190,16 +186,23 @@ export function AddLessonModal({ isOpen, onClose, courseId, onLessonAdded }) {
                     </div>
                   </div>
                 )}
-                <Input id="content-file" type="file" accept=".pdf" onChange={handleFileChange} className="hidden" />
+                <Input
+                  id="content-file"
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleFileChange}
+                  className="hidden"
+                  disabled={isLoading}
+                />
               </div>
             </div>
 
             {/* Submit Buttons */}
             <div className="flex gap-2 pt-4">
-              <Button type="submit" className="flex-1" disabled={isSubmitting}>
-                {isSubmitting ? "Creating Lesson..." : "Create Lesson"}
+              <Button type="submit" className="flex-1" disabled={isLoading}>
+                {isLoading ? "Creating Lesson..." : "Create Lesson"}
               </Button>
-              <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+              <Button type="button" variant="outline" onClick={onClose} disabled={isLoading}>
                 Cancel
               </Button>
             </div>
