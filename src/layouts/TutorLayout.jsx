@@ -8,6 +8,7 @@ import { ProfileContent } from '@/features/tutor_features/profile_screen/pages/p
 import { AddCourseContent } from '@/features/tutor_features/courses/page/add-course-content';
 import BlogPage from '@/features/shared_features/blogs/page/BlogPage';
 import AddBlogPage from '@/features/tutor_features/add_blogs/pages/add_blog';
+import CoursesPage from '@/features/tutor_features/courses/page/courses-page';
 // import Sidebar from '@/components/Tutor_Components/sidebar/Sidebar.jsx';
 
 const TutorLayout = () => {
@@ -25,6 +26,7 @@ const TutorLayout = () => {
               {activeSection === "profile" && <ProfileContent/>}
               {activeSection==="view-blogs" && <BlogPage/>}
               {activeSection==="add-blog" && <AddBlogPage/>}
+              {activeSection==="view-courses" && <CoursesPage/>}
             </main>
           </div>
         </SidebarInset>
