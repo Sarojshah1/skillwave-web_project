@@ -28,12 +28,9 @@ export function CreateCourseForm({ onSubmit, onCancel }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState({})
   const [currentTag, setCurrentTag] = useState("")
-  const [currentRequirement, setCurrentRequirement] = useState("")
-  const [currentOutcome, setCurrentOutcome] = useState("")
   const [uploadProgress, setUploadProgress] = useState(0)
   const [notification, setNotification] = useState(null)
 
-  // Simple notification system
   const showNotification = (message, type = "info") => {
     setNotification({ message, type })
     setTimeout(() => setNotification(null), 5000)
@@ -68,7 +65,6 @@ export function CreateCourseForm({ onSubmit, onCancel }) {
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0]
     if (file) {
-      // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
         showNotification("Please select an image smaller than 5MB", "error")
         return
@@ -111,24 +107,6 @@ export function CreateCourseForm({ onSubmit, onCancel }) {
     }))
   }
 
-  // Handle requirement addition
-  const addRequirement = () => {
-    if (currentRequirement.trim()) {
-      setFormData((prev) => ({
-        ...prev,
-        requirements: [...prev.requirements, currentRequirement.trim()],
-      }))
-      setCurrentRequirement("")
-    }
-  }
-
-  // Remove learning outcome
-  const removeOutcome = (index) => {
-    setFormData((prev) => ({
-      ...prev,
-      learningOutcomes: prev.learningOutcomes.filter((_, i) => i !== index),
-    }))
-  }
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -187,7 +165,6 @@ export function CreateCourseForm({ onSubmit, onCancel }) {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      {/* Notification */}
       {notification && (
         <div
           className={cn(

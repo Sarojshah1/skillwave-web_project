@@ -77,14 +77,14 @@ export function PostCard({ post, currentUser }) {
           <div className="flex items-center gap-8">
             <Avatar className="ring-2 ring-white dark:ring-gray-900 shadow-md">
               <AvatarImage
-                src={`http://localhost:3000/profile/${post.user_id.profile_picture}` || "/placeholder.svg"}
-                alt={post.user_id.name}
+                src={`http://localhost:3000/profile/${post.user_id?.profile_picture}` || "/placeholder.svg"}
+                alt={post.user_id?.name}
               />
-              <AvatarFallback>{post.user_id.name.charAt(0)}</AvatarFallback>
+              <AvatarFallback>{post.user_id?.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
               <div className="font-semibold text-lg leading-tight">
-                {post.user_id.name}
+                {post.user_id?.name}
               </div>
               <div className="text-xs opacity-90">
                 {formatDistanceToNow(new Date(post.created_at), {

@@ -67,7 +67,7 @@ export function CommentItem({
         <Avatar className="h-8 w-8">
           <AvatarImage
             src={
-              `http://localhost:3000/profile/${comment.user_id.profile_picture}` ||
+              `http://localhost:3000/profile/${comment.user_id?.profile_picture}` ||
               "/placeholder.svg"
             }
             alt={comment.user_id?.name}
