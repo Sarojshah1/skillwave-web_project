@@ -1,6 +1,13 @@
-import { BookOpen, Clock, CheckCircle, Play, FileText, ExternalLink } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import {
+  BookOpen,
+  Clock,
+  CheckCircle,
+  Play,
+  FileText,
+  ExternalLink,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export function LessonList({ lessons }) {
   if (lessons.length === 0) {
@@ -8,11 +15,15 @@ export function LessonList({ lessons }) {
       <Card>
         <CardContent className="p-8 text-center">
           <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No lessons yet</h3>
-          <p className="text-gray-500">Start building your course by adding your first lesson.</p>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">
+            No lessons yet
+          </h3>
+          <p className="text-gray-500">
+            Start building your course by adding your first lesson.
+          </p>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -25,8 +36,12 @@ export function LessonList({ lessons }) {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <h4 className="font-medium text-gray-900">{lesson.title}</h4>
-                    {lesson.isCompleted && <CheckCircle className="w-4 h-4 text-green-500" />}
+                    <h4 className="font-medium text-gray-900">
+                      {lesson.title}
+                    </h4>
+                    {lesson.isCompleted && (
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                    )}
                   </div>
 
                   <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
@@ -44,11 +59,17 @@ export function LessonList({ lessons }) {
                   {/* Content and Video Links */}
                   <div className="flex flex-wrap gap-2">
                     {lesson.content && (
-                      <div className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 cursor-pointer">
+                      <a
+                        href={`http://localhost:3000/uploads/pdfs/${lesson.content}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 cursor-pointer"
+                      >
                         <FileText className="w-4 h-4" />
                         <span>PDF Content</span>
-                      </div>
+                      </a>
                     )}
+
                     {lesson.video_url && (
                       <a
                         href={lesson.video_url}
@@ -62,7 +83,9 @@ export function LessonList({ lessons }) {
                       </a>
                     )}
                     {!lesson.content && !lesson.video_url && (
-                      <span className="text-sm text-gray-400 italic">No content uploaded yet</span>
+                      <span className="text-sm text-gray-400 italic">
+                        No content uploaded yet
+                      </span>
                     )}
                   </div>
                 </div>
@@ -71,5 +94,5 @@ export function LessonList({ lessons }) {
           </Card>
         ))}
     </div>
-  )
+  );
 }

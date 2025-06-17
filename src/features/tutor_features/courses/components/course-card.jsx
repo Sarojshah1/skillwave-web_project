@@ -27,7 +27,7 @@ export function CourseCard({ course, onManageCourse }) {
       {/* Course Thumbnail */}
       <div className="relative overflow-hidden">
         <img
-          src={course.thumbnail || "/placeholder.svg"}
+          src={`http://localhost:3000/thumbnails/${course.thumbnail}`}
           alt={course.title}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />

@@ -1,19 +1,39 @@
 import { useState } from "react"
 import { CourseCard } from "@/features/tutor_features/courses/components/course-card"
 import { CourseManagementPage } from "@/features/tutor_features/courses/components/course-management-page"
-import { dummyCourses} from "../components/dummy-data"
 import { GraduationCap, Users, Clock, TrendingUp } from "lucide-react"
+import { useGetCreatorCourses } from "../hooks/useGetCreatorCourses"  
 
 export default function CoursesPage() {
   const [selectedCourse, setSelectedCourse] = useState(null)
+  const { data: courses, isLoading, error } = useGetCreatorCourses()
 
   if (selectedCourse) {
     return <CourseManagementPage course={selectedCourse} onBack={() => setSelectedCourse(null)} />
   }
 
-  const totalLessons = dummyCourses.reduce((acc, course) => acc + course.lessons.length, 0)
-  const totalQuizzes = dummyCourses.reduce((acc, course) => acc + course.quizzes.length, 0)
-  const completedLessons = dummyCourses.reduce(
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center text-xl font-semibold">
+        Loading courses...
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex justify-center items-center text-xl font-semibold text-red-600">
+        Failed to load courses. Please try again.
+      </div>
+    )
+  }
+
+  // Default empty array if no data
+  const coursesList = courses ?? []
+
+  const totalLessons = coursesList.reduce((acc, course) => acc + course.lessons.length, 0)
+  const totalQuizzes = coursesList.reduce((acc, course) => acc + course.quizzes.length, 0)
+  const completedLessons = coursesList.reduce(
     (acc, course) => acc + course.lessons.filter((lesson) => lesson.isCompleted).length,
     0,
   )
@@ -40,7 +60,7 @@ export default function CoursesPage() {
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">{dummyCourses.length}</div>
+                <div className="text-2xl font-bold text-blue-600">{coursesList.length}</div>
                 <div className="text-sm text-gray-600">Total Courses</div>
               </div>
               <div className="text-center">
@@ -70,9 +90,9 @@ export default function CoursesPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {dummyCourses.map((course, index) => (
+          {coursesList.map((course, index) => (
             <div
-              key={course.id}
+              key={course._id}
               className="transform transition-all duration-300 hover:scale-105"
               style={{
                 animationDelay: `${index * 150}ms`,

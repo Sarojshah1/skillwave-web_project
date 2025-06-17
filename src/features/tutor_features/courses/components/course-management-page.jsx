@@ -73,7 +73,6 @@ export function CourseManagementPage({ course, onBack }) {
         <AddQuizButton courseId={course.id} onQuizAdded={handleContentAdded} />
       </div>
 
-      {/* Lessons Section */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

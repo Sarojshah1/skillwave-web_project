@@ -10,5 +10,10 @@ export const addCourseService = {
             }}
         );
         return response.data;
+    },
+
+    getCreatorCourses: async () => {
+        const response = await api.get(ENDPOINTS.COURCES.GET_CREATOR_COURSE);
+        return response.data;
     }
 }
