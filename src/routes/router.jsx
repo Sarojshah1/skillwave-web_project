@@ -20,6 +20,7 @@ import EditProfilePage from '@/features/students_features/edit_profile/pages/edi
 import MyLearnings from '@/features/students_features/MyLearnings/pages/My-Learning';
 import CourseContentPage from '@/features/students_features/MyLearnings/pages/course-content-page';
 import ChangePasswordPage from '@/features/students_features/changePassword/pages/change-password-page';
+import StudyGroupsPage from '@/features/shared_features/study_groups/pages/StudyGroupsPage';
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,14 @@ export const router = createBrowserRouter([
         element: (
           <AuthProtectedRoute>
             <CourseDetailsPage />
+          </AuthProtectedRoute>
+        ),
+      },
+       {
+        path: '/study-groups',
+        element: (
+          <AuthProtectedRoute>
+            <StudyGroupsPage/>
           </AuthProtectedRoute>
         ),
       },
