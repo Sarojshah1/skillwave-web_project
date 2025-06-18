@@ -18,12 +18,15 @@ export default function ChatArea({ activeGroup, onCreateGroup }) {
     isScreenSharing,
     participants,
     localVideoRef,
+    callDuration,
+    connectionStatus,
+    error,
     startCall,
     endCall,
     toggleMute,
     toggleVideo,
     toggleScreenShare,
-  } = useVideoCall()
+  } = useVideoCall(activeGroup?._id)
 
   if (!activeGroup) {
     return <EmptyChat onCreateGroup={onCreateGroup} />
@@ -44,6 +47,7 @@ export default function ChatArea({ activeGroup, onCreateGroup }) {
         onShowMembers={handleShowMembers}
       />
 
+
       <VideoCallArea
         isCallActive={isCallActive}
         participants={participants}
@@ -51,10 +55,14 @@ export default function ChatArea({ activeGroup, onCreateGroup }) {
         isMuted={isMuted}
         isVideoOff={isVideoOff}
         isScreenSharing={isScreenSharing}
+        callDuration={callDuration}
+        connectionStatus={connectionStatus}
+        error={error}
         onToggleMute={toggleMute}
         onToggleVideo={toggleVideo}
         onToggleScreenShare={toggleScreenShare}
         onEndCall={endCall}
+        activeGroup={activeGroup}
       />
 
       <MessagesList messages={messages} activeGroup={activeGroup} messagesEndRef={messagesEndRef} />
