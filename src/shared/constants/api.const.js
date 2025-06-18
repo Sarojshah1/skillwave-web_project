@@ -64,6 +64,10 @@ export const ENDPOINTS = {
     JOIN_GROUP: "/groupstudy/:groupId/addMember",
     GET_USER_GROUPS: "/groupstudy/user",
 
+  },
+  CHATS:{
+    MESSGAE:"/chats",
+    GET_CHAT_MESSAGE:"/chats/:context_id"
   }
 
 

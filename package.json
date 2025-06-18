@@ -55,6 +55,7 @@
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
     "recharts": "^2.15.3",
+    "socket.io-client": "^4.8.1",
     "tabs": "^0.2.0",
     "tailwind-merge": "^3.3.0",
     "tailwindcss-animate": "^1.0.7",

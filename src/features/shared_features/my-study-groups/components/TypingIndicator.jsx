@@ -11,7 +11,7 @@ export default function TypingIndicator({ typingUsers, isVisible }) {
           <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
         </div>
         <span>
-          {typingUsers.length === 1 ? `${typingUsers[0]} is typing...` : `${typingUsers.length} people are typing...`}
+          {`Someone people are typing...`}
         </span>
       </div>
     </div>

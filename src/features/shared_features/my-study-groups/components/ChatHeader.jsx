@@ -2,7 +2,7 @@ import { Video, Phone, Users, MoreVertical, PhoneOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { getProfileImageUrl } from "@/lib/utils"
+import { getImageUrl, getProfileImageUrl } from "@/lib/utils"
 
 export default function ChatHeader({ activeGroup, isCallActive, participants, onStartCall, onEndCall, onShowMembers }) {
   if (!activeGroup) return null
@@ -13,7 +13,7 @@ export default function ChatHeader({ activeGroup, isCallActive, participants, on
         <div className="flex items-center space-x-3">
           <Avatar className="w-10 h-10">
             <AvatarImage
-              src={getProfileImageUrl(activeGroup.group_image) || "/placeholder.svg"}
+              src={getImageUrl(activeGroup.group_image) || "/placeholder.svg"}
               alt={activeGroup.group_name}
             />
             <AvatarFallback className="bg-[#49BBBD] text-white">

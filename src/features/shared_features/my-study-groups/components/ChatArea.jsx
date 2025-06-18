@@ -1,4 +1,4 @@
-import { useChat } from "../../../hooks/useChat"
+import { useChat } from "../hooks/useChatSocket"
 import { useVideoCall } from "../hooks/useVideoCall"
 import ChatHeader from "./ChatHeader"
 import VideoCallArea from "./VideoCallArea"
@@ -8,7 +8,7 @@ import TypingIndicator from "./TypingIndicator"
 import EmptyChat from "./EmptyChat"
 
 export default function ChatArea({ activeGroup, onCreateGroup }) {
-  const { messages, onlineUsers, isTyping, typingUsers, messagesEndRef, sendMessage, startTyping } = useChat(
+  const { messages, isTyping, typingUsers, messagesEndRef, sendMessage, startTyping } = useChat(
     activeGroup?._id,
   )
   const {

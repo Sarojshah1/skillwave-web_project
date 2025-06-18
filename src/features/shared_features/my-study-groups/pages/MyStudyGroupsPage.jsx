@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 import GroupSidebar from "../components/GroupSidebar"
-// import ChatArea from "../components/ChatArea"
+import ChatArea from "../components/ChatArea"
 import { useUserGroups } from "../hooks/useUserGroups";
 
 
@@ -34,7 +34,7 @@ export default function MyStudyGroupsPage() {
         onGroupSelect={handleGroupSelect}
         onCreateGroup={handleCreateGroup}
       />
-      {/* <ChatArea activeGroup={activeGroup} onCreateGroup={handleCreateGroup} /> */}
+      <ChatArea activeGroup={activeGroup} onCreateGroup={handleCreateGroup} />
     </div>
   );
 }
