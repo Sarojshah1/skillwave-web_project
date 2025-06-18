@@ -51,19 +51,19 @@ export function LessonSidebar({
           <div className="pl-4 pr-2 pb-2">
             {lessons?.map((lesson) => (
               <button
-                key={lesson.id}
+                key={lesson._id}
                 className={`flex items-center w-full p-3 rounded-lg mb-1 text-left transition-colors ${
-                  activeLesson === lesson.id
+                  activeLesson === lesson._id
                     ? "bg-blue-50 text-blue-700"
                     : "hover:bg-gray-50 text-gray-700 hover:text-gray-900"
                 }`}
-                onClick={() => onSelectLesson(lesson.id)}
+                onClick={() => onSelectLesson(lesson._id)}
               >
                 <div
                   className={`flex-shrink-0 h-8 w-8 rounded-full flex items-center justify-center mr-3 ${
                     lesson.isCompleted
                       ? "bg-green-100 text-green-600"
-                      : activeLesson === lesson.id
+                      : activeLesson === lesson._id
                         ? "bg-blue-100 text-blue-600"
                         : "bg-gray-100 text-gray-500"
                   }`}
@@ -112,7 +112,7 @@ export function LessonSidebar({
                     ? "bg-purple-50 text-purple-700"
                     : "hover:bg-gray-50 text-gray-700 hover:text-gray-900"
                 }`}
-                onClick={() => onSelectQuiz(quiz.id)}
+                onClick={() => onSelectQuiz(quiz._id)}
               >
                 <div
                   className={`flex-shrink-0 h-8 w-8 rounded-full flex items-center justify-center mr-3 ${

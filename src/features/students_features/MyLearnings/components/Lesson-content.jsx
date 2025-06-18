@@ -2,6 +2,8 @@ import { ExternalLink, Clock, BookOpen } from "lucide-react";
 import SimplePDFViewer from "@/features/shared_features/blogs/components/SimplePDFViewr";
 
 export function LessonContent({ lesson }) {
+  console.log("lesson.content", lesson?.content)
+
   if (!lesson) {
     return (
       <div className="flex items-center justify-center h-full">
