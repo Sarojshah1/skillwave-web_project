@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { formatDate, getImageUrl, getProfileImageUrl } from "@/lib/utils"
 
 export default function StudyGroupCard({ group, currentUserId, onJoinGroup, onLeaveGroup }) {
+  console.log(currentUserId)
   const [isLoading, setIsLoading] = useState(false)
 
   const isMember = group.members.some((member) => member._id === currentUserId)
@@ -117,7 +118,7 @@ export default function StudyGroupCard({ group, currentUserId, onJoinGroup, onLe
           onClick={handleJoinLeave}
           disabled={isLoading || isCreator}
           className={`w-full transition-all duration-300 ${
-            isMember ? "bg-red-500 hover:bg-red-600 text-white" : "bg-[#49BBBD] hover:bg-[#3da5a7] text-white"
+            isMember ? "bg-[#49BBBD] hover:bg-red-600 text-white" : "bg-[#49BBBD] hover:bg-[#3da5a7] text-white"
           }`}
         >
           {isLoading ? (

@@ -21,6 +21,7 @@ import MyLearnings from '@/features/students_features/MyLearnings/pages/My-Learn
 import CourseContentPage from '@/features/students_features/MyLearnings/pages/course-content-page';
 import ChangePasswordPage from '@/features/students_features/changePassword/pages/change-password-page';
 import StudyGroupsPage from '@/features/shared_features/study_groups/pages/StudyGroupsPage';
+import MyStudyGroupsPage from '@/features/shared_features/my-study-groups/pages/MyStudyGroupsPage';
 
 
 export const router = createBrowserRouter([
@@ -123,6 +124,14 @@ export const router = createBrowserRouter([
     element: <NoLayout />,
     children: [
    { path: "/content/:id", element: <CourseContentPage/>},
+   {
+        path: '/my-study-groups',
+        element: (
+          <AuthProtectedRoute>
+           <MyStudyGroupsPage/>
+          </AuthProtectedRoute>
+        ),
+      },
     ],
   },
   {

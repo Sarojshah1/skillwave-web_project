@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ICONS_PATHS } from '../../constants/imagePaths'
 import NavItems from "./NavItems";
 import ProfileOptions from "./ProfileOptions";
-import MobileMenu from "./MobileMenu"
+import MobileMenu from "@/shared/components/NavBar/mobileMenu"
 import { useGlobalAuth } from "../../../hooks/useAuth"
 
 const NavBar = () => {
