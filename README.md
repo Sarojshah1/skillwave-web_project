@@ -5,6 +5,7 @@
   <h3>Modern E-Learning Platform for Students and Tutors</h3>
   <p><strong>Semester 5 College Project</strong></p>
   <p><strong>Developed by: Saroj Kumar Sah</strong></p>
+    <p><strong>Coventry ID :14188846</strong></p>
   <p><strong>BSc (Hons) Computing</strong></p>
   <p><strong>Softwarica College of IT and E-Commerce</strong></p>
   <p><strong>Affiliated to Coventry University</strong></p>
@@ -29,7 +30,6 @@
 
 SkillWave is a comprehensive e-learning platform that connects students with tutors through interactive courses, study groups, and community features. Built with modern React technologies, it provides a seamless learning experience with real-time collaboration capabilities including **WebRTC video calling**.
 
-> **This project was developed as a Semester 5 college project by Saroj Kumar Sah, a BSc (Hons) Computing student at Softwarica College of IT and E-Commerce, affiliated to Coventry University.**
 
 ### Key Highlights
 - **Multi-role Platform**: Separate interfaces for students and tutors
@@ -606,8 +606,6 @@ VITE_SOCKET_URL=https://your-api-domain.com
 
 ### Deployment Platforms
 - **Vercel**: Recommended for React apps
-- **Netlify**: Alternative with good CI/CD
-- **AWS S3 + CloudFront**: For custom hosting
 
 ### Build Optimization
 - Code splitting by routes
@@ -621,29 +619,6 @@ VITE_SOCKET_URL=https://your-api-domain.com
 3. **Bandwidth**: Monitor video call bandwidth usage
 4. **Browser Support**: Ensure target browsers support WebRTC
 5. **Fallbacks**: Provide alternatives for unsupported scenarios
-
-## 🤝 Contributing
-
-### Development Workflow
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/new-feature`
-3. Make changes and commit: `git commit -m 'Add new feature'`
-4. Push to branch: `git push origin feature/new-feature`
-5. Create Pull Request
-
-### Code Review Guidelines
-- Follow existing code patterns
-- Add proper error handling
-- Include loading states
-- Test on multiple devices
-- Update documentation if needed
-
-### Testing
-- Test all user flows
-- Verify responsive design
-- Check accessibility
-- Test payment flows (use test credentials)
-- **Test WebRTC features across different browsers**
 
 ---
 
