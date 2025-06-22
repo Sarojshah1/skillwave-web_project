@@ -44,8 +44,8 @@ export const useAuth = () => {
           payload.append(key, value);
         }
       });
-      const { token, role, _id } = await authService.login(payload);
-      storageService.setAuthData({ token, role, _id });
+      const { token, role, id } = await authService.login(payload);
+      storageService.setAuthData({ token, role, id });
       if (role === "tutor") {
         navigate("/tutor");
       } else if (role === "student") {

@@ -20,6 +20,8 @@ import EditProfilePage from '@/features/students_features/edit_profile/pages/edi
 import MyLearnings from '@/features/students_features/MyLearnings/pages/My-Learning';
 import CourseContentPage from '@/features/students_features/MyLearnings/pages/course-content-page';
 import ChangePasswordPage from '@/features/students_features/changePassword/pages/change-password-page';
+import StudyGroupsPage from '@/features/shared_features/study_groups/pages/StudyGroupsPage';
+import MyStudyGroupsPage from '@/features/shared_features/my-study-groups/pages/MyStudyGroupsPage';
 
 
 export const router = createBrowserRouter([
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
         element: (
           <AuthProtectedRoute>
             <CourseDetailsPage />
+          </AuthProtectedRoute>
+        ),
+      },
+       {
+        path: '/study-groups',
+        element: (
+          <AuthProtectedRoute>
+            <StudyGroupsPage/>
           </AuthProtectedRoute>
         ),
       },
@@ -114,6 +124,14 @@ export const router = createBrowserRouter([
     element: <NoLayout />,
     children: [
    { path: "/content/:id", element: <CourseContentPage/>},
+   {
+        path: '/my-study-groups',
+        element: (
+          <AuthProtectedRoute>
+           <MyStudyGroupsPage/>
+          </AuthProtectedRoute>
+        ),
+      },
     ],
   },
   {

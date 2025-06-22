@@ -56,6 +56,18 @@ export const ENDPOINTS = {
   },
   ENROLL:{
     GET_ENROLLED_COURSES: "/enroll/user",
+  },
+  GROUP_STUDY:{
+    GET_ALL_GROUPS: "/groupstudy",
+    GET_GROUP_BY_ID: "/groupstudy/:id",
+    CREATE_GROUP: "/groupstudy/create",
+    JOIN_GROUP: "/groupstudy/:groupId/addMember",
+    GET_USER_GROUPS: "/groupstudy/user",
+
+  },
+  CHATS:{
+    MESSGAE:"/chats",
+    GET_CHAT_MESSAGE:"/chats/:context_id"
   }
 
 
