@@ -52,6 +52,10 @@ export const authService = {
     const response = await api.post(ENDPOINTS.OTP.SEND_OTP, { email });
     return response.data;
   },
+  verifyOtp: async (email, otp) => {
+    const response = await api.post(ENDPOINTS.OTP.VERIFY_OTP, { email, otp });
+    return response.data;
+  },
 
   updatePasswordByEmail: async (email, newPassword) => {
     const response = await api.put(ENDPOINTS.USER.UPDATE_PASSWORD_BY_EMAIL, {

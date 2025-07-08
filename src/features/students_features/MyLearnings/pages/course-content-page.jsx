@@ -1,11 +1,10 @@
-
 import { useState,useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { BookOpen, CheckCircle } from "lucide-react"
 import { LessonSidebar } from "../components/Lesson-sidebar"
 import { LessonContent } from "../components/Lesson-content"
 import { QuizContent } from "../components/Quiz-content"
-import { Certificate } from "../components/Certificate"
+import Certificate from "../components/Certificate"
 import { useCourseById } from "@/features/shared_features/courseDetailsPage/hooks/useCourseById"
 // import { dummyCourse, dummyUserProgress } from "../../data/dummy-course"
 
@@ -29,7 +28,7 @@ export default function CourseContentPage() {
 }, [data])
 console.log("Course state:", course)
   const currentLesson = activeLesson ? course?.lessons.find((lesson) => lesson._id === activeLesson) : null
-  const currentQuiz = activeQuiz ? course?.quizzes.find((quiz) => quiz.id === activeQuiz) : null
+  const currentQuiz = activeQuiz ? course?.quizzes.find((quiz) => quiz._id === activeQuiz) : null
 
   const handleSelectLesson = (lessonId) => {
     setActiveLesson(lessonId)
@@ -150,14 +149,18 @@ console.log("Course state:", course)
         {/* Content Area */}
         <div className="flex-1 overflow-y-auto p-6">
           {showCertificate ? (
-            <Certificate
-              studentName="John Doe"
-              courseName={course?.title}
-              instructorName={course?.instructor}
-              completionDate={new Date()}
-            />
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+              <div className="relative">
+                <Certificate
+                  courseName={course?.title}
+                  instructorName={course?.instructor}
+                  courseId={course?._id}
+                  onClose={() => setShowCertificate(false)}
+                />
+              </div>
+            </div>
           ) : activeQuiz && currentQuiz ? (
-            <QuizContent quiz={currentQuiz} onComplete={handleQuizComplete} />
+            <QuizContent quizId={activeQuiz} quizMeta={currentQuiz} onComplete={handleQuizComplete} />
           ) : (
             <LessonContent lesson={currentLesson} />
           )}

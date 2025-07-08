@@ -13,7 +13,8 @@ export const ENDPOINTS = {
     SEARCH_HISTORY:"/user/search-history",
   },
   OTP:{
-    SEND_OTP:"/otp"
+    SEND_OTP:"/otp",
+    VERIFY_OTP:"/verify",
   },
   CATEGORY:{
     GET_CATEGORY:"/category"
@@ -68,7 +69,25 @@ export const ENDPOINTS = {
   CHATS:{
     MESSGAE:"/chats",
     GET_CHAT_MESSAGE:"/chats/:context_id"
-  }
+  },
+  QUIZ:{
+    CREATE_QUIZ:"/quiz/quizzes",
+    GET_QUIZ_BY_ID:"/quiz/quizzes",
+    GET_ALL_QUIZZES:"/quiz/quizzes",
+    GET_QUIZZES_BY_COURSE_ID:"/quiz/quizzes/course",
+    UPDATE_QUIZ:"/quiz/quizzes",
+    DELETE_QUIZ:"/quiz/quizzes",
+  },
+  QUESTION:{
+    CREATE_QUESTION:"/question/questions",
+    BULK_INSERT_QUESTIONS:"/question/questions/bulk",
+    GET_QUESTION_BY_ID:"/question/questions/:id",
+    GET_ALL_QUESTIONS:"/question/questions",
+    GET_QUESTIONS_BY_QUIZ_ID:"/question/questions/quiz",
+    UPDATE_QUESTION:"/question/questions",
+    DELETE_QUESTION:"/question/questions",
+  },
+
 
 
 };
