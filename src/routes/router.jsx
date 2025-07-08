@@ -22,6 +22,9 @@ import CourseContentPage from '@/features/students_features/MyLearnings/pages/co
 import ChangePasswordPage from '@/features/students_features/changePassword/pages/change-password-page';
 import StudyGroupsPage from '@/features/shared_features/study_groups/pages/StudyGroupsPage';
 import MyStudyGroupsPage from '@/features/shared_features/my-study-groups/pages/MyStudyGroupsPage';
+import ForgotPasswordEmailPage from '../features/shared_features/auth/pages/ForgotPasswordEmailPage';
+import ForgotPasswordOtpPage from '../features/shared_features/auth/pages/ForgotPasswordOtpPage';
+import ForgotPasswordResetPage from '../features/shared_features/auth/pages/ForgotPasswordResetPage';
 
 
 export const router = createBrowserRouter([
@@ -117,7 +120,9 @@ export const router = createBrowserRouter([
             <ChangePasswordPage/>
           </AuthProtectedRoute>,
         },
-     
+      { path: '/forgot-password', element: <ForgotPasswordEmailPage/> },
+      { path: '/forgot-password/verify', element: <ForgotPasswordOtpPage/> },
+      { path: '/forgot-password/reset', element: <ForgotPasswordResetPage/> },
     ],
   },
   {
