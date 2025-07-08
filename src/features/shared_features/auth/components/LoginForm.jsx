@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import ErrorMessage from './ErrorMessage';
 import { useLoginData } from '../hooks/useLoginData';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
    const { loading, error, handleLogin } = useAuth();
@@ -43,7 +44,7 @@ const LoginForm = () => {
             <input type="checkbox" id="remember" className="h-4 w-4 text-teal-500 focus:ring-teal-400 border-gray-300 rounded" />
             <label htmlFor="remember" className="ml-2 text-gray-700">Remember me</label>
           </div>
-          <a href="#" className="text-teal-500 hover:text-teal-600 text-sm">Forgot Password?</a>
+          <Link to="/forgot-password" className="text-teal-500 hover:text-teal-600 text-sm">Forgot Password?</Link>
         </div>
 
         {error && <ErrorMessage error={error} />}
