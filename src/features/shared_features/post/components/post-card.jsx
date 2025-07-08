@@ -35,21 +35,29 @@ import { PostImages } from "./post-images";
 import { CommentItem } from "./comment-item";
 import { useComments } from "../hooks/useComments";
 import { useAddComment } from "../hooks/useAddComment";
+import { usePostLike } from "../hooks/usePostLike";
 
 
 export function PostCard({ post, currentUser }) {
   const [isLiked, setIsLiked] = useState(post.isLikedByCurrentUser || false);
-  const [likesCount, setLikesCount] = useState(post.likes || 0);
+  const [likesCount, setLikesCount] = useState(post.likes.length || 0);
   const [commentText, setCommentText] = useState("");
   const [showAllComments, setShowAllComments] = useState(false);
 
   const { data: comments = [], isLoading } = useComments(post._id);
   const addCommentMutation = useAddComment(post._id);
+  const { mutate: likePost, isLoading: isLiking } = usePostLike();
 
   const handleLike = () => {
     setIsLiked(!isLiked);
     setLikesCount((prev) => (isLiked ? prev - 1 : prev + 1));
-    // TODO: call like API
+    likePost(post._id, {
+      onError: () => {
+        // Revert UI if error
+        setIsLiked(isLiked);
+        setLikesCount((prev) => (isLiked ? prev + 1 : prev - 1));
+      },
+    });
   };
 
   const handleAddComment = (e) => {
@@ -129,7 +137,7 @@ export function PostCard({ post, currentUser }) {
         )}
 
         <div className="flex items-center justify-between mt-6 text-sm text-muted-foreground">
-          <div>{likesCount > 0 && `${likesCount} likes`}</div>
+          <div>{`${likesCount} likes`}</div>
           <div>{comments.length > 0 && `${comments.length} comments`}</div>
         </div>
       </CardContent>
@@ -148,6 +156,7 @@ export function PostCard({ post, currentUser }) {
                   : "text-gray-600 dark:text-gray-400 hover:bg-indigo-50 dark:hover:bg-indigo-900"
               )}
               onClick={handleLike}
+              disabled={isLiking}
             >
               <Heart
                 className={cn(

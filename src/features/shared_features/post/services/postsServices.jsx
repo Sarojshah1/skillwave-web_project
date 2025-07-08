@@ -17,7 +17,8 @@ export const postsService = {
         },
       }
     );
-    return response.data;
+    console.log(response.data['posts'])
+    return response.data['posts'];
   },
 
   addComment: async (postId, commentData) => {
@@ -55,6 +56,10 @@ export const postsService = {
     const response = await api.post(ENDPOINTS.USER.SEARCH_HISTORY, {
       searchTerm,
     });
+    return response.data;
+  },
+  likePost: async (postId) => {
+    const response = await api.post(ENDPOINTS.POST.LIKE_POST.replace(":id", postId));
     return response.data;
   },
 };

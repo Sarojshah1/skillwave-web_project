@@ -7,7 +7,6 @@ const navitems = [
   { link: "Study Groups", path: "study-groups" },
   { link: "Posts", path: "posts" },
   { link: "Blog", path: "blogs" },
-  { link: "Category", path: "category" },
   { link: "About Us", path: "aboutus" },
 ]
 

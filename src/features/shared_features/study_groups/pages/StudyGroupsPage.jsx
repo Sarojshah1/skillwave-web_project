@@ -7,10 +7,13 @@ import StudyGroupsHeader from "../components/StudyGroupsHeader"
 import StudyGroupsGrid from "../components/StudyGroupsGrid"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle, Loader2 } from "lucide-react"
+import CreateGroupForm from "../components/CreateGroupForm"
 
 export default function StudyGroupsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const CURRENT_USER_ID = localStorage.getItem("userid")
+  const [showModal, setShowModal] = useState(false);
+  const [refresh, setRefresh] = useState(0);
 
   const { data: studyGroups = [], isLoading, isError, error } = useGetAllGroups()
   const { mutateAsync: joinGroup } = useJoinGroup()
@@ -47,8 +50,13 @@ export default function StudyGroupsPage() {
   }
 
   const handleCreateGroup = () => {
-    alert("Create Group functionality - would open create group modal/page")
-  }
+    setShowModal(true);
+  };
+  const handleCloseModal = () => setShowModal(false);
+  const handleSuccess = () => {
+    setShowModal(false);
+    setRefresh(r => r + 1);
+  };
 
   if (isLoading) {
     return (
@@ -118,6 +126,28 @@ export default function StudyGroupsPage() {
           </div>
         </div>
       </div>
+      {/* Modal for Create Group */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative animate-fade-in">
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <CreateGroupForm onSuccess={handleSuccess} />
+          </div>
+        </div>
+      )}
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in { animation: fade-in 0.2s ease; }
+      `}</style>
     </div>
   )
 }

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { AddLessonButton } from "@/features/tutor_features/lessons/components/add-lesson-button"
 import { AddQuizButton } from "@/features/tutor_features/quizes/components/add-quiz-button"
 import { LessonList } from "@/features/tutor_features/lessons/components/lesson-list"
+import QuizList from "@/features/tutor_features/quizes/components/QuizList"
 
 export function CourseManagementPage({ course, onBack }) {
   const [refreshKey, setRefreshKey] = useState(0)
@@ -67,7 +68,7 @@ export function CourseManagementPage({ course, onBack }) {
 
       <div className="flex gap-4 mb-6">
         <AddLessonButton courseId={course._id} onLessonAdded={handleContentAdded} />
-        <AddQuizButton courseId={course.id} onQuizAdded={handleContentAdded} />
+        <AddQuizButton courseId={course._id} onQuizAdded={handleContentAdded} />
       </div>
 
       <Card>
@@ -79,6 +80,19 @@ export function CourseManagementPage({ course, onBack }) {
         </CardHeader>
         <CardContent>
           <LessonList lessons={course.lessons} key={refreshKey} />
+        </CardContent>
+      </Card>
+
+      {/* Quizzes Section */}
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <BookOpen className="w-5 h-5" />
+            Course Quizzes
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <QuizList courseId={course._id} key={refreshKey} />
         </CardContent>
       </Card>
     </div>
