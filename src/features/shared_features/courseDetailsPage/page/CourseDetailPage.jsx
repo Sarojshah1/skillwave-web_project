@@ -66,7 +66,7 @@ export function CourseDetailsPage() {
                     >
                       {tab === "overview" && "Overview"}
                       {tab === "instructor" && "Instructor"}
-                      {tab === "reviews" && `Reviews (${reviews?.length})`}
+                      {tab === "reviews" && `Reviews (${reviews?.length || 0})`}
                     </button>
                   ))}
                 </div>
@@ -171,7 +171,7 @@ export function CourseDetailsPage() {
                         <div className="text-center">
                           <div className="text-4xl font-bold text-gray-900">{averageRating.toFixed(1)}</div>
                           <RatingStars rating={averageRating} className="justify-center mb-1" />
-                          <div className="text-sm text-gray-600">{reviews.length} reviews</div>
+                          <div className="text-sm text-gray-600">{reviews?.length || 0} reviews</div>
                         </div>
                       </div>
                     </div>
