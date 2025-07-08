@@ -28,7 +28,7 @@ export function ReviewList({ courseId }) {
 //     )
 //   }
 
-  if (!reviews || reviews.length === 0) {
+  if (!Array.isArray(reviews) || reviews.length === 0) {
     return <p className="text-gray-600 text-center">No reviews yet. Be the first to leave one!</p>
   }
 
