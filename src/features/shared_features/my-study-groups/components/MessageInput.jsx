@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useRef } from "react"
 import { Send, Smile, Paperclip, ImageIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
