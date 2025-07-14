@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Star } from "./icons"
 import { cn } from "../../lib/utils"
 
