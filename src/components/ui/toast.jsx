@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { X, CheckCircle, AlertCircle, XCircle, Info } from "lucide-react"
 import { Button } from "@/components/ui/button.jsx"
 import { cn } from "@/lib/utils.js"
@@ -48,7 +48,7 @@ export function Toast({ toast, onDismiss }) {
 
 export function ToastContainer({ toasts, onDismiss }) {
   return (
-    <div className="fixed top-0 right-0 z-50 p-4 space-y-2">
+    <div className="fixed top-16 right-0 z-[9999] p-4 space-y-2">
       {toasts.map((toast) => (
         <Toast key={toast.id} toast={toast} onDismiss={onDismiss} />
       ))}
