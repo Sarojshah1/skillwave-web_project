@@ -1,4 +1,4 @@
-
+import React from 'react';
 import CustomButton from "../../../components/buttons/CustomButton"
 
 const navitems = [

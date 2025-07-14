@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from "framer-motion"
 import { Star, BookOpen, Award, Globe, TrendingUp, HelpCircle } from "lucide-react"
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useRef } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import CustomButton from "../../../components/buttons/CustomButton";

@@ -1,3 +1,5 @@
+import React from 'react';
+
 const DecorativeBlobs = () => (
     <>
       <div className="absolute top-20 left-10 w-64 h-64 bg-[#49BBBD]/10 rounded-full blur-3xl"></div>
