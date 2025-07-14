@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useState } from "react"
 import BlogCard from "@/features/shared_features/blogs/components/BlogCard"
 import { FaSearch, FaSpinner, FaExclamationTriangle, FaBookOpen } from "react-icons/fa"
@@ -96,7 +96,7 @@ const BlogPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBlogs.map((blog) => (
               <BlogCard
-                key={blog._id}
+                key={blog._id || blog.id}
                 blog={blog}
               />
             ))}
