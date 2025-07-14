@@ -58,6 +58,13 @@ export const ENDPOINTS = {
   ENROLL:{
     GET_ENROLLED_COURSES: "/enroll/user",
   },
+  PAYMENT:{
+    CREATE_PAYMENT: "/payment",
+    GET_PAYMENTS: "/payment",
+    GET_PAYMENT_BY_ID: "/payment/:id",
+    UPDATE_PAYMENT: "/payment/:id",
+    DELETE_PAYMENT: "/payment/:id",
+  },
   GROUP_STUDY:{
     GET_ALL_GROUPS: "/groupstudy",
     GET_GROUP_BY_ID: "/groupstudy/:id",

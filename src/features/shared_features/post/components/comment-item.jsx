@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { Heart } from "lucide-react";

@@ -1,4 +1,3 @@
-"use client"
 
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
@@ -7,6 +6,8 @@ import axios from "axios"
 import { ICONS_PATHS } from "@/shared/constants/imagePaths"
 import { CreditCard, Shield, CheckCircle, Clock, Users, Star, ArrowLeft, Sparkles, Gift, Lock } from "lucide-react"
 import { api } from "@/infrastructure/api/api"
+import CryptoJS from "crypto-js"
+import { v4 as uuidv4 } from 'uuid';
 
 const CheckoutPage = () => {
   const { state } = useLocation()
@@ -79,14 +80,53 @@ const CheckoutPage = () => {
     checkout.show({ amount: totalAmount * 100 })
   }
 
+  // import CryptoJS from "crypto-js"
+
   const handleEsewaPayment = () => {
     setIsProcessing(true)
-    const amount = totalAmount
-    const successUrl = encodeURIComponent("http://localhost:3000/payment-success")
-    const failureUrl = encodeURIComponent("http://localhost:3000/payment-failure")
-    const esewaPaymentUrl = `https://uat.esewa.com.np/epay/main?amt=${amount}&pid=${_id}&scd=EPAYTEST&su=${successUrl}&fu=${failureUrl}`
-    window.location.href = esewaPaymentUrl
+  
+    const transaction_uuid = uuidv4(); // or use uuid v4 if required
+    console.log(transaction_uuid)
+    const product_code = "EPAYTEST"
+    const total_amount = price.toFixed(2) // You must match this exactly as in the string
+    const signed_field_names = "total_amount,transaction_uuid,product_code"
+  
+    const signingString = `total_amount=${total_amount},transaction_uuid=${transaction_uuid},product_code=${product_code}`
+    const secret = "8gBm/:&EnhH.1/q" // ← UAT secret key from eSewa. DO NOT USE IN PRODUCTION FRONTEND.
+  
+    const signature = CryptoJS.HmacSHA256(signingString, secret).toString(CryptoJS.enc.Base64)
+  
+    const fields = {
+      amount: price.toFixed(2),
+      tax_amount: "0",
+      total_amount: total_amount,
+      transaction_uuid: transaction_uuid,
+      product_code: product_code,
+      product_service_charge: "0",
+      product_delivery_charge: "0",
+      success_url: "https://developer.esewa.com.np/success",
+      failure_url: "https://developer.esewa.com.np/failure",
+      signed_field_names: signed_field_names,
+      signature: signature,
+    }
+  
+    const form = document.createElement("form")
+    form.setAttribute("method", "POST")
+    form.setAttribute("action", "https://rc-epay.esewa.com.np/api/epay/main/v2/form")
+  
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement("input")
+      input.setAttribute("type", "hidden")
+      input.setAttribute("name", key)
+      input.setAttribute("value", value)
+      form.appendChild(input)
+    })
+  
+    document.body.appendChild(form)
+    form.submit()
   }
+  
+  
 
   const handlePayment = async () => {
     if (!selectedPaymentMethod) {
@@ -96,6 +136,21 @@ const CheckoutPage = () => {
 
     if (selectedPaymentMethod === "e-sewa") {
       handleEsewaPayment()
+      try {
+        const response = await api.post(
+          "http://localhost:3000/api/payment",
+          {
+            course_id: _id,
+            amount: totalAmount,
+            payment_method: "Khalti",
+            status: "successful",
+          },
+         
+        )
+        console.log(response)
+      } catch (error) {
+        console.error("Payment API error:", error)
+      }
     } else if (selectedPaymentMethod === "khalti") {
       handleKhaltiPayment()
       try {

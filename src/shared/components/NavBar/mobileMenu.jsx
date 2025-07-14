@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react"
 import { FaBars, FaTimes, FaUsers } from "react-icons/fa"
 import CustomButton from "../../../components/buttons/CustomButton"

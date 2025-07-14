@@ -1,4 +1,4 @@
-
+import React from 'react';
 export default function TypingIndicator({ typingUsers, isVisible }) {
   if (!isVisible || typingUsers.length === 0) return null
 

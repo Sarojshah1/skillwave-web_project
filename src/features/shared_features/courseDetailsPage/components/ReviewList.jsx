@@ -1,3 +1,4 @@
+import React from 'react';
 import { useReviewsByCourseId } from "../hooks/useReviewsByCourseId"
 import { Card } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"

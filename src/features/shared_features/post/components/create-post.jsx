@@ -1,3 +1,4 @@
+import React from 'react';
 import { X, ImageIcon, Smile, MapPin, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";

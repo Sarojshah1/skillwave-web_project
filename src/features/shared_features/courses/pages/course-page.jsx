@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useMemo } from "react"
 import { SearchBar } from "../components/search-bar"
 import { FilterBar } from "../components/filter-bar"

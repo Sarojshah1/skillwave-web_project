@@ -1,3 +1,4 @@
+import React from 'react';
 import { useChat } from "../hooks/useChatSocket"
 import { useVideoCall } from "../hooks/useVideoCall"
 import ChatHeader from "./ChatHeader"

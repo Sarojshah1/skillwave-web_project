@@ -1,3 +1,4 @@
+import React from 'react';
 import { Users, MessageCircle, Video } from "lucide-react"
 import { Button } from "@/components/ui/button"
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState,useEffect } from "react"
 import GroupSidebar from "../components/GroupSidebar"
 import ChatArea from "../components/ChatArea"
