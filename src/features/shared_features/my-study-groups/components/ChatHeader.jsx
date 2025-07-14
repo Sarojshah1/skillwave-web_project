@@ -1,3 +1,4 @@
+import React from 'react';
 import { Video, Phone, Users, MoreVertical, PhoneOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
