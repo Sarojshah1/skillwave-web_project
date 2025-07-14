@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from "framer-motion";
 import { BookOpen, Award } from "lucide-react";
 import { IMAGE_PATHS } from "../../../shared/constants/imagePaths";

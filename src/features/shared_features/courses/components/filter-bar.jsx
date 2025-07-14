@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react"
 import { ChevronDown, SlidersHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"

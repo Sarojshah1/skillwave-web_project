@@ -1,3 +1,4 @@
+import React from 'react';
 import StatCard from "./StatCard"
 import { GraduationCap, Trophy, Users, Clock } from "lucide-react"
 

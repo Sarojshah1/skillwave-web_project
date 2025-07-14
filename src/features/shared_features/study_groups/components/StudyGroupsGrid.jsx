@@ -1,3 +1,4 @@
+import React from 'react';
 import StudyGroupCard from "./StudyGroupCard"
 import { Users } from "lucide-react"
 
