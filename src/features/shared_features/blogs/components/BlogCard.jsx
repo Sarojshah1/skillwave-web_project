@@ -34,7 +34,7 @@ const BlogCard = ({ blog }) => {
               {tag}
             </span>
           ))}
-          {blog?.tags.length > 2 && (
+          {(blog?.tags || []).slice(0, 2).length > 2 && (
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
               +{blog.tags.length - 2} more
             </span>
